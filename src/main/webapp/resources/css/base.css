@@ -1,0 +1,342 @@
+@charset "utf-8";
+
+/* Reset */
+
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+
+@font-face {
+ font-family: 'Campton_Medium';
+ src: url('/css/font/Campton-Medium.eot');
+ src: local(※),
+  url('/css/font/Campton-Medium.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/css/font/Campton-Medium.woff') format('woff'),
+  url('/css/font/Campton-Medium.ttf') format('truetype'),
+  url('/css/font/Campton-Medium.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+ font-family: 'mg';
+ src: url('/css/font/malgun.eot');
+ src: local(※),
+  url('/css/font/malgun.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/css/font/malgun.woff') format('woff'),
+  url('/css/font/malgun.ttf') format('truetype'),
+  url('/css/font/malgun.svg#webfonturzspG4F') format('svg');
+}
+@font-face {
+ font-family: 'mgb';
+ src: url('/css/font/malgunbd.eot');
+ src: local(※),
+  url('/css/font/malgunbd.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/css/font/malgunbd.woff') format('woff'),
+  url('/css/font/malgunbd.ttf') format('truetype'),
+  url('/css/font/malgunbd.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+ font-family: 'BMJUA';
+ src: url('/css/font/BMJUA_ttf.eot');
+ src: local(※),
+  url('/css/font/BMJUA_ttf.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/css/font/BMJUA.woff') format('woff'),
+  url('/css/font/BMJUA.ttf') format('truetype'),
+  url('/css/font/BMJUA.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+	font-family: 'NotoSansL';
+	src: url('/css/font/NotoSans-Light.eot');
+	src: local(※),
+	url('/css/font/NotoSans-Light.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('/css/font/NotoSans-Light.woff') format('woff'),
+	url('/css/font/NotoSans-Light.ttf') format('truetype'),
+	url('/css/font/NotoSans-Light.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+	font-family: 'NotoSansM';
+	src: url('/css/font/NotoSans-Medium.eot');
+	src: local(※),
+	url('/css/font/NotoSans-Medium.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('/css/font/NotoSans-Medium.woff') format('woff'),
+	url('/css/font/NotoSans-Medium.ttf') format('truetype'),
+	url('/css/font/NotoSans-Medium.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+	font-family: 'NotoSansB';
+	src: url('/css/font/NotoSans-Bold.eot');
+	src: local(※),
+	url('/css/font/NotoSans-Bold.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('/css/font/NotoSans-Bold.woff') format('woff'),
+	url('/css/font/NotoSans-Bold.ttf') format('truetype'),
+	url('/css/font/NotoSans-Bold.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+	font-family: 'MontserratR';
+	src: url('/css/font/Montserrat-Regular.eot');
+	src: local(※),
+	url('/css/font/Montserrat-Regular.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('/css/font/Montserrat-Regular.woff') format('woff'),
+	url('/css/font/Montserrat-Regular.ttf') format('truetype'),
+	url('/css/font/Montserrat-Regular.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+	font-family: 'MontserratB';
+	src: url('/css/font/Montserrat-Bold.eot');
+	src: local(※),
+	url('/css/font/Montserrat-Bold.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('/css/font/Montserrat-Bold.woff') format('woff'),
+	url('/css/font/Montserrat-Bold.ttf') format('truetype'),
+	url('/css/font/Montserrat-Bold.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+	font-family: 'NanumSquare';
+	src: url('/css/font/NanumSquareB.eot');
+	src: local(※),
+	url('/css/font/NanumSquareB.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('/css/font/NanumSquareB.woff') format('woff'),
+	url('/css/font/NanumSquareB.ttf') format('truetype'),
+	url('/css/font/NanumSquareB.svg#webfonturzspG4F') format('svg');
+}
+
+@font-face {
+	font-family: 'NanumSquareL';
+	src: url('/css/font/NanumSquareL.eot');
+	src: local(※),
+	url('/css/font/NanumSquareL.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('/css/font/NanumSquareL.woff') format('woff'),
+	url('/css/font/NanumSquareL.ttf') format('truetype'),
+	url('/css/font/NanumSquareL.svg#webfonturzspG4F') format('svg');
+}
+
+/* @font-face {
+ font-family: 'SJR';
+ src: url('/css/font/SJJungRA.ttf');
+ src: local(※),
+  url('/css/font/sjr.eot#iefix') format('embedded-opentype'), /*IE6-IE8* /
+  url('/css/font/SJJungRA.woff') format('woff'),
+  url('/css/font/SJJungRA.ttf') format('truetype'),
+  url('/css/font/SJJungRA.svg#webfonturzspG4F') format('svg');
+} */
+
+/* @font-face {
+ font-family: 'Ng';
+ src: url('/css/font/NanumGothic.eot');
+ src: local(※),
+  url('/css/font/NanumGothic.eot#iefix') format('embedded-opentype'), IE6-IE8
+  url('/css/font/NanumGothic.woff') format('woff'),
+  url('/css/font/NanumGothic.ttf') format('truetype'),
+  url('/css/font/NanumGothic.svg#webfonturzspG4F') format('svg');
+}
+@font-face {
+ font-family: 'Ngb';
+ src: url('/css/font/NanumGothicBold.eot');
+ src: local(※),
+  url('/css/font/NanumGothicBold.eot#iefix') format('embedded-opentype'), IE6-IE8
+  url('/css/font/NanumGothicBold.woff') format('woff'),
+  url('/css/font/NanumGothicBold.ttf') format('truetype'),
+  url('/css/font/NanumGothicBold.svg#webfonturzspG4F') format('svg');
+} */
+/**/
+/*@font-face{font-family:ng;font-style:normal;font-weight:normal;src:local('NanumGothic'),local('나눔고딕'),url(addons/webfont/font/ng.woff) format('woff')}*/
+/*@font-face{font-family:ng;font-style:normal;font-weight:bold;src:local('NanumGothic'),local('+*/
+/* '나눔고딕'),url(addons/webfont/font/ngb.woff) format('woff')}*/
+
+/* 통합 아이콘 */
+@font-face {
+  font-family: "iconfont";
+  src: url('/css/font/iconfont.eot'); /* IE9*/
+  src: local(※),
+  url('/css/font/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/css/font/iconfont.woff') format('woff'), /* chrome, firefox */
+  url('/css/font/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('/css/font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ftic-local:before { content: "\e600"; } /* 로컬 */
+.ftic-home:before { content: "\e601"; } /* 홈 */
+.ftic-mypage:before { content: "\e602"; } /* 마이페이지 */
+.ftic-like:before { content: "\e606"; } /* 좋아요&찜한상품 */
+.ftic-like2:before { content: "\e626"; } /* 좋아요2&찜한상품2 */
+.ftic-zan:before { content: "\e62e"; } /* 엄지, 좋아요 */
+.ftic-cart:before { content: "\e604"; } /* 장바구니 */
+.ftic-cart2:before { content: "\e63c"; } /*장바구니2*/
+.ftic-fax:before { content: "\e61e"; } /* 팩스 */
+.ftic-set:before { content: "\e60f"; } /* 설정 */
+.ftic-del:before { content: "\e612"; } /* 삭제 */
+.ftic-pc:before { content: "\e60e"; } /* PC */
+.ftic-cmt:before { content: "\e617"; } /* 댓글 */
+.ftic-tel:before { content: "\e61d"; } /* 전화 */
+.ftic-warning:before { content: "\e61f"; } /* 경고 */
+.ftic-coupon:before { content: "\e609"; } /* 쿠폰1 */
+.ftic-coupon2:before { content: "\e60a"; } /* 쿠폰2 */
+.ftic-write:before { content: "\e614"; }  /* 편집,쓰기 */
+.ftic-search:before { content: "\e613"; } /* 검색 */
+.ftic-search2:before { content: "\e637"; } /* 검색 Bold */
+.ftic-close:before { content: "\e60d"; } /* 닫기 */
+.ftic-coupon-list:before { content: "\e618"; } /* 쿠폰사용내역 */
+.ftic-id:before { content: "\e60b"; } /* 아이디 */
+.ftic-distribution:before { content: "\e608"; } /* 배송 */
+.ftic-fail:before { content: "\e620"; } /* 실패 */
+.ftic-intro:before { content: "\e611"; } /* 회사소개 */
+.ftic-cscenter:before { content: "\e619"; } /* 고객센터 */
+.ftic-member-list:before { content: "\e61a"; } /* 회원리스트 */
+.ftic-lately:before { content: "\e607"; } /* 최근 본 상품 */
+.ftic-watch:before { content: "\e635"; } /* 시계 */
+.ftic-fund:before { content: "\e61b"; } /* 적립금 */
+.ftic-faqqna:before { content: "\e60c"; } /* FAQ,QNA */
+.ftic-gotop:before { content: "\e610"; } /* 위로가기 */
+.ftic-qmark:before { content: "\e622"; } /* 물음표 */
+.ftic-inquire:before { content: "\e61c"; } /* 1:1문의하기 */
+.ftic-allmenu:before { content: "\e603"; } /* 전체메뉴,카테고리 */
+.ftic-pw:before { content: "\e616"; } /* 비밀번호 */
+.ftic-join:before { content: "\e615"; } /* 회원가입 */
+.ftic-telfax:before { content: "\e621"; } /* 전화&팩스 */
+.ftic-other:before { content: "\e605"; } /* 기타 */
+.ftic-prompt:before { content: "\e623"; } /* 주의 */
+.ftic-success:before { content: "\e624"; } /* 성공 */
+.ftic-fenxiang:before { content: "\e62b"; } /* 공유하기1 */
+.ftic-fenxiang2:before { content: "\e627"; } /* 공유하기2 */
+.ftic-back:before { content: "\e62d"; } /* 이전 */
+.ftic-next:before { content: "\e625"; } /* 다음 */
+.ftic-next2:before { content: "\e62a"; } /* 다음2 */
+.ftic-top:before { content: "\e62c"; } /* 위 */
+.ftic-bottom:before { content: "\e629"; } /* 아래 */
+.ftic-card:before { content: "\e628"; } /* 카드 */
+.ftic-staron:before { content: "\e630"; } /* 별on */
+.ftic-staroff:before { content: "\e62f"; } /* 별off */
+.ftic-star05:before { content: "\e636"; } /* 반별 */
+.ftic-phone:before { content: "\e631"; } /* 핸드폰 */
+.ftic-login:before { content: "\e633"; } /* 등록 */
+.ftic-logout:before { content: "\e632"; } /* 탈퇴 */
+.ftic-calendar:before { content: "\ee634"; } /* 달력 */
+.ftic-list:before { content: "\e63a"; } /* list */
+.ftic-list1:before { content: "\e63b"; } /* list1 */
+.ftic-list2:before { content: "\e63f"; } /* list2 */
+.ftic-list3:before { content: "\e63e"; } /* list3 */
+.ftic-gallery:before { content: "\e638"; } /* 겔러리 */
+.ftic-Favorites:before { content: "\e639"; } /*즐겨찾기 깃발모양*/
+
+
+
+
+
+body, h1, h2, h3, h4, h5, h6,
+div, p, blockquote, pre, address,
+ul, ol, li, dl, dt, dd,
+table, caption, th, td,
+form, fieldset, legend,
+hr {
+	margin:0;
+	padding:0;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size:100%;
+}
+ul, ol {
+	list-style:none;
+}
+li {
+	list-style:none;
+}
+table {
+	margin:0;
+	padding:0;
+	border-spacing:0;
+	border:0;
+}
+*+html table {border-collapse:collapse;}
+img, fieldset {
+	border:0;
+}
+address, caption, cite, code, dfn, em, var {
+	font-style:normal;
+	font-weight:normal;
+}
+
+input, select, button, textarea {
+	color:#2e2e2e;
+	font-size:100%;
+	font-family:'Ng','dotum',Arial,sans-serif;
+	vertical-align:middle;
+}
+
+/* Base */
+body {
+	color:#2e2e2e;
+	font-size:12px;
+	font-family:"Nanum Gothic",Verdana,Dotum,AppleGothic,sans-serif;
+}
+caption, legend {
+	width:0;
+	height:0;
+	font-size:0;
+	line-height:0;
+	overflow:hidden;
+	visibility:hidden;
+}
+a {
+	color:#2e2e2e;
+	text-decoration:none;
+}
+a:focus, a:hover, a:active {
+	text-decoration:none;
+}
+
+label,
+button {
+	cursor:pointer;
+}
+textarea, pre {
+	overflow:auto;
+}
+img {
+	vertical-align:middle;
+	/* height:auto; */
+}
+fieldset {
+	display:block;
+}
+
+/*html5*/
+article, aside, dialog, footer, header, section, nav, figure, menu {
+	display:block;
+}
+
+
+
+
+
+/*------------------------------------------------------------------통합 css --------------------------------------------------------------------------*/
+
+
+/*스카이베너 css*/
+#right_bn_wrap {bottom: 0;display: none;overflow: hidden;position: fixed;right: 0;top: 0;z-index: 99990;}
+#leftFloating, #rightFloating {cursor: pointer;left: 10%;position: fixed;top: 500px;z-index: 100;}
+.sm_right_bn_05 {cursor: pointer;float: left;margin-top: 270px;}
+#right_con {float: left;margin-top: 137px;}
+#canvasTodayGoodsList > div{ margin:2px auto;}
+/*스카이베너 css*/
+
+
+
+
+
+/* main test delete */
+
+/* 가격 폰트 */
+.prc, .mkprc, .pct {font-family:NanumSquare,sans-serif;}
