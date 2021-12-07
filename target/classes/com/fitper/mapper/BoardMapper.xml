@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="org.zerock.mapper.BoardMapper">
+<mapper namespace="com.fitper.mapper.BoardMapper">
 
 	<sql id="criteria">
 		<trim prefix="(" suffix=") and">
@@ -20,7 +20,7 @@
 		</trim>
 	</sql>
 
-	<select id="getList" resultType="org.zerock.domain.BoardVO">
+	<select id="getList" resultType="com.fitper.domain.BoardVO">
 		select * from tblBoard order by bno desc
 	</select>
 	
@@ -35,7 +35,7 @@
 		insert into tblBoard(bno,title,content,writer) values(#{bno},#{title},#{content},#{writer})
 	</insert>
 	
-	<select id="read" resultType="org.zerock.domain.BoardVO">
+	<select id="read" resultType="com.fitper.domain.BoardVO">
 		select * from tblBoard where bno = #{bno}
 	</select>
 	
@@ -51,7 +51,7 @@
 		where bno = #{bno}
 	</update>
 	
-	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+	<select id="getListWithPaging" resultType="com.fitper.domain.BoardVO">
 	select * from
 	(
 		select /*+ INDEX_DESC(tblBoard pk_board) */ rownum rn,bno,title,writer,regdate,updatedate 
@@ -72,7 +72,7 @@
 	</select>
 	
 	
-	<select id="searchTest" resultType="org.zerock.domain.BoardVO">
+	<select id="searchTest" resultType="com.fitper.domain.BoardVO">
 		select * from tblBoard where
 		
 		<trim suffix="and">
