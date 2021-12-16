@@ -16,8 +16,6 @@
 	<meta name="author" content="">
 	<title>핏퍼 FITPER</title>
 	<link rel="shortcut icon" href="/resources/images/favicon.ico">
-	<link rel="stylesheet" href="/resources/css/base.css">
-	
 
 	<!-- Bootstrap Core CSS -->
 	<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,11 +41,25 @@
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
+	
+	<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+	
+	<link href="/resources/css/swiper.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="/resources/css/base.css">
+
+	<link rel="stylesheet" href="/resources/css/style.css">
+
+
 
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<script src="/resources/js/swiper.min.js"></script>
 	
-	<link href="/resources/css/style.css" rel="stylesheet">
+	<script src="https://code.highcharts.com/highcharts.src.js"></script>
+	
+	
 
 </head>
 

@@ -1,1 +1,45 @@
-p{margin:0}
+@charset "utf-8";
+
+body{background:#fff;}
+li,a{color:#333;}
+.topWrap{width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:50px 0 20px;}
+.topWrap .gnb ul{padding-top:20px}
+
+.searchWrap {float:left; width:430px;}
+.searchWrap input {float:left; width:376px; height:43px; padding:0 22px; border:none;background:#f4f4f4;border-radius:20px 0 0 20px; color:#000; font-size:14px; line-height:41px; box-sizing:border-box;}
+.searchWrap .btn_search {float:left; width:49px; height:43px; padding-top:12px; border-radius:0 20px 20px 0; background:#699eff; text-align:center; box-sizing:border-box;}
+.searchWrap .btn_search i.fa{display:inline-block; width:20px; height:20px; margin:-1px 0 0 -3px; color:#fff; font-size:20px; line-height:20px; font-weight:bold; vertical-align:top;}
+
+.topWrap .rgtWrap{text-align:right;}
+.topWrap .rgtWrap > ul{font-size:0;}
+.topWrap .rgtWrap > ul > li{display:inline-block;font-size:14px;position:relative;vertical-align:top;}
+.topWrap .rgtWrap > ul > li:before{content:"";padding-left:15px;margin-left:15px;border-left:1px solid #999;height:10px;font-size:14px;}
+.topWrap .rgtWrap > ul > li:first-of-type:before{display:none;}
+.topWrap .rgtWrap > ul > li.my{overflow:hidden;}
+.topWrap .rgtWrap > ul > li.my:after{content:"\f078";font:normal normal normal 14px/1 FontAwesome;color:#666;}
+.topWrap .rgtWrap > ul > li.my:hover{overflow:visible;}
+.topWrap .rgtWrap > ul > li.my:hover:after{content:"\f077";}
+.topWrap .rgtWrap > ul > li.my:hover ul{height:142px;border-color:#666;}
+.topWrap .rgtWrap > ul > li.my:hover ul li{border-color:#666;}
+.topWrap .rgtWrap ul li ul{transition:all .5s cubic-bezier(0.22, 0.61, 0.36, 1);height:0;position:absolute;right:0;top:20px;z-index:20;border:1px solid transparent;font-size:0;background:#fff;overflow:hidden;}
+.topWrap .rgtWrap ul li ul li{border-top:1px solid transparent;padding:5px 10px;font-size:12px;transition:all .5s cubic-bezier(0.22, 0.61, 0.36, 1);}
+.topWrap .rgtWrap ul li ul li:first-of-type{border-top:0;}
+
+.gnbWrap{position:relative;min-width:1200px;border-bottom:1px solid #ddd;border-top:1px solid #ddd;background:#fff;z-index:10;}
+.gnbBox {width:1200px; margin:0 auto; overflow:hidden;}
+.gnbBox ul {line-height:46px;display:flex;justify-content:center;}
+.gnbBox ul li {padding:0 40px;}
+.gnbBox ul li a {color:#000; font-size:15px; font-weight:bold;}
+
+
+
+.sct1{width:1200px;margin:auto;text-align:center;}
+
+#container{width:1200px;margin:0 auto 50px;}
+
+
+
+
+
+
+
