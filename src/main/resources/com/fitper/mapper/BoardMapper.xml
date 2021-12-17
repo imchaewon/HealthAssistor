@@ -25,12 +25,12 @@
 	</select>
 	
 	<insert id="insert">
-		insert into tblBoard(bno,title,content,writer) values(seqBoard.nextVal,#{title},#{content},#{writer})
+		insert into tblBoard(bno,title,content,writer) values(seq_board.nextVal,#{title},#{content},#{writer})
 	</insert>
 	
 	<insert id="insertSelectKey">
 		<selectKey order="BEFORE" keyProperty="bno" resultType="long">
-			select seqBoard.nextVal from dual
+			select seq_board.nextVal from dual
 		</selectKey>
 		insert into tblBoard(bno,title,content,writer) values(#{bno},#{title},#{content},#{writer})
 	</insert>

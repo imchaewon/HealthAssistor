@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.fitper.mapper.MemberMapper">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") and">
+		<foreach collection="typeArr" item="type" separator="or">
+			<if test="type == 'I'.toString()">
+				ID like '%'||#{keyword}||'%'
+			</if>
+		</foreach>
+		</trim>
+	</sql>
+
+	<select id="getList" resultType="com.fitper.domain.MemberVO">
+		select * from MEMBER_TL order by MEMBER_SQ desc
+	</select>
+	
+	<insert id="insert">
+		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH,GNDR, AMR) values(seq_board.nextVal, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
+	</insert>
+	
+	<insert id="insertSelectKey">
+		<selectKey order="BEFORE" keyProperty="MEMBER_SQ" resultType="long">
+			select seqBoard.nextVal from dual
+		</selectKey>
+		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH,GNDR, AMR) values(#{MEMBER_SQ}, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
+	</insert>
+	
+	<select id="read" resultType="com.fitper.domain.MemberVO">
+		select * from MEMBER_TL where MEMBER_SQ = #{MEMBER_SQ}
+	</select>
+	
+	<delete id="delete">
+		delete from MEMBER_TL where MEMBER_SQ = #{MEMBER_SQ}
+	</delete>
+	
+	<update id="update">
+		update MEMBER_TL set PW = #{PW},
+		PW_QUESTION_SQ = #{PW_FIND_A},
+		AMR = #{AMR}
+	</update>
+	
+	<select id="getListWithPaging" resultType="com.fitper.domain.MemberVO">
+	select * from
+	(
+		select /*+ INDEX_DESC(MEMBER_TL PK_MEMBER_TL) */ rownum rn, MEMBER_SQ, ID, PW_QUESTION_SQ, PW_FIND_A, BIRTH, GNDR, AMR, JOIN_DATE  
+		from MEMBER_TL
+		where
+		<include refid="criteria"></include>
+	<![CDATA[
+		MEMBER_SQ > 0 and rownum > 0 and rownum <= #{pageNum} * #{amount}
+	) 
+	where rn > (#{pageNum} - 1) * #{amount}
+	]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(MEMBER_SQ) from MEMBER_TL where
+		<include refid="criteria"></include>
+		MEMBER_SQ > 0
+	</select>
+	
+	
+	<select id="searchTest" resultType="com.fitper.domain.MemberVO">
+		select * from MEMBER_TL where
+		
+		<trim suffix="and">
+		<foreach collection="map" index="key" item="val" separator="or" open="(" close=")">
+			<if test="key == 'T'.toString()">
+				title like #{val}
+			</if>
+			<if test="key == 'C'.toString()">
+				content like #{val}
+			</if>
+			<if test="key == 'W'.toString()">
+				writer like #{val}
+			</if>
+		</foreach>
+		</trim>
+		
+		<![CDATA[
+		rownum < 10
+		]]>
+	
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

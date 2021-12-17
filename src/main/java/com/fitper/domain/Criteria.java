@@ -1,8 +1,5 @@
 package com.fitper.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,7 +16,7 @@ public class Criteria {
 	private String keyword;
 
 	public Criteria() {
-		this(1,10);
+		this(1,8);
 	}
 
 	public Criteria(int pageNum, int amount) {

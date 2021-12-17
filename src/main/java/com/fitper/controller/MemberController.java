@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fitper.domain.BoardVO;
 import com.fitper.domain.Criteria;
+import com.fitper.domain.MemberVO;
 import com.fitper.domain.PageDTO;
-import com.fitper.service.BoardService;
+import com.fitper.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 
 @Log4j
-@RequestMapping("/board")
+@RequestMapping("/member")
 @RequiredArgsConstructor
 @Controller
-public class BoardController {
+public class MemberController {
 	
-	private final BoardService service;
+	private final MemberService service;
 
 //	@GetMapping("/list")
 //	public void list(Model model) {
@@ -57,12 +57,12 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register_ok")
-	public String register(BoardVO vo, RedirectAttributes rttr) {
+	public String register(MemberVO vo, RedirectAttributes rttr) {
 		
 		
 		log.info("vo: " + vo);
 		
-		log.info(vo.getContent());
+		log.info(vo.getID());
 		
 		Long bno = service.registerKey(vo);
 		
@@ -70,17 +70,17 @@ public class BoardController {
 		
 		rttr.addFlashAttribute("result", bno);
 		
-		return "redirect:/board/list";
+		return "redirect:/Member/list";
 		
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO vo, Criteria cri, RedirectAttributes rttr) {
+	public String modify(MemberVO vo, Criteria cri, RedirectAttributes rttr) {
 		
 		int result = service.modify(vo);
 		
 		if (result == 1) {
-			rttr.addFlashAttribute("result", vo.getBno());
+			rttr.addFlashAttribute("result", vo.getMEMBER_SQ());
 			rttr.addFlashAttribute("modType", "m");
 		}
 		
@@ -89,17 +89,17 @@ public class BoardController {
 		rttr.addAttribute("type",cri.getType());
 		rttr.addAttribute("keyword",cri.getKeyword());
 		
-		return "redirect:/board/list";
+		return "redirect:/Member/list";
 		
 	}
 	
 	@PostMapping("/remove")
-	public String remove(Long bno, Criteria cri, RedirectAttributes rttr) {
+	public String remove(Long MEMBER_SQ, Criteria cri, RedirectAttributes rttr) {
 		
-		int result = service.remove(bno);
+		int result = service.remove(MEMBER_SQ);
 		
 		if (result == 1) {
-			rttr.addFlashAttribute("result", bno);
+			rttr.addFlashAttribute("result", MEMBER_SQ);
 			rttr.addFlashAttribute("modType", "r");
 		}
 
@@ -108,7 +108,7 @@ public class BoardController {
 //		rttr.addAttribute("type",cri.getType());
 //		rttr.addAttribute("keyword",cri.getKeyword());
 		
-		return "redirect:/board/list";
+		return "redirect:/Member/list";
 		
 	}
 	
