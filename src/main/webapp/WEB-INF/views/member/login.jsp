@@ -13,8 +13,8 @@
 
 
 	<ul class="login_input">
-		<li><input type="text" id="id" name="id" value="" placeholder="아이디"></li>
-		<li><input type="password" id="pass" name="pass" placeholder="비밀번호"></li>
+		<li><input type="text" id="ID" name="ID" value="" placeholder="아이디"></li>
+		<li><input type="password" id="PW" name="PW" placeholder="비밀번호"></li>
 		<li><span id="loginCheck" style="color:red; font-size: 17px;"></span></li>
 	</ul>
 	<a href="javascript:loginChk();" class="btn1 sitebg1"><span>로그인</span></a>
@@ -42,9 +42,13 @@
 
 <script>
 
+if("${result}" == "fail"){
+	alert("아이디/비밀번호를 확인해주세요.");
+}
+
 $(document).ready(function(){
-	$("#id").focus();
-	$("#pass").keypress(function(){
+	$("#ID").focus();
+	$("#PW").keypress(function(){
 		if (event.which == 13) loginChk();
 	});
 
@@ -69,19 +73,19 @@ $(document).ready(function(){
 });
 
 function loginChk() {
-	var uid = $("#id").val();
-	var pass = $("#pass").val();
+	var uid = $("#ID").val();
+	var pass = $("#PW").val();
 	var isSave = $(":radio[name=isSave]:checked").val();
 	var token = $("#token").val();
 
 	if (chkNull(uid)) {
 		alert("아이디를 입력해 주세요.");
-		$("#id").focus();
+		$("#ID").focus();
 		return;
 	}
 	if (chkNull(pass)) {
 		alert("비밀번호를 입력해 주세요.");
-		$("#pass").focus();
+		$("#PW").focus();
 		return;
 	}
 	if(chkNull(isSave)){

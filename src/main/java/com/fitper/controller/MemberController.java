@@ -1,5 +1,8 @@
 package com.fitper.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +27,7 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	
 	private final MemberService service;
-
+	
 //	@GetMapping("/list")
 //	public void list(Model model) {
 //		log.info("list.............");
@@ -117,14 +120,40 @@ public class MemberController {
 		model.addAttribute("cri",cri);
 	}
 	
+	@GetMapping("join")
+	public void join() {
+		
+	}
+	
 	@GetMapping("/login")
 	public void login() {
 		
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest req) {
+		log.info("logout");
+		HttpSession session = req.getSession();
+		session.removeAttribute("member");
+		return "redirect:/";
+	}
+	
 	@PostMapping("/login_ok")
-	public void login_ok(){
+	public String login_ok(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr){
+		HttpSession session = req.getSession();
+		MemberVO mem = service.login(vo);
 		
+		if(mem == null) {
+			rttr.addFlashAttribute("result","fail");
+			return "redirect:/member/login";
+		} else {
+			session.setAttribute("member", mem);
+			return "redirect:/";
+		}
+		
+
+		//model.addAttribute("member", session.getAttribute("member"));
+
 	}
 	
 	

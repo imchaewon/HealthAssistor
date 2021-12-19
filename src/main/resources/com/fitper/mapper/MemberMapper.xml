@@ -33,6 +33,10 @@
 		select * from MEMBER_TL where MEMBER_SQ = #{MEMBER_SQ}
 	</select>
 	
+	<select id="read_login" resultType="com.fitper.domain.MemberVO">
+		select * from MEMBER_TL where ID = #{ID} and PW = #{PW}
+	</select>
+	
 	<delete id="delete">
 		delete from MEMBER_TL where MEMBER_SQ = #{MEMBER_SQ}
 	</delete>

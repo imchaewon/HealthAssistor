@@ -34,19 +34,8 @@
 
 	<!-- Custom Fonts -->
 	<link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-	
-	<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 	
 	<link href="/resources/css/swiper.min.css" rel="stylesheet">
-	
-	<link href="/resources/vendor/font-awesome/css/NotoSansKR.css" rel="stylesheet" type="text/css">
 	
 	<link rel="stylesheet" href="/resources/css/base.css">
 
@@ -80,12 +69,15 @@
 	</div>
 	
 	<div class="rgtWrap">
+		<c:if test="${member == null}">
 		<ul id="logout">
 			<li><a href="/member/login">로그인</a></li>
 			<li><a href="/member/join">회원가입</a></li>
 		</ul>
-		<ul id="login" style="display:none">
-			<li>안녕하세요, 홍길동님</li>
+		</c:if>
+		<c:if test="${member != null}">
+		<ul id="login">
+			<li>Hi, ${member.ID}님</li>
 			<li class="my"><a href="javascript:">마이페이지</a>
 				<ul>
 					<li><a href="javascript:">내 정보 관리</a></li>
@@ -95,8 +87,9 @@
 					<li><a href="javascript:">회원 탈퇴</a></li>
 				</ul>
 			</li>
-			<li><a href="javascript:">로그아웃</a></li>
+			<li><a href="/member/logout">로그아웃</a></li>
 		</ul>
+		</c:if>
 	</div>
 
 </div>

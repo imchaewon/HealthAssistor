@@ -11,6 +11,8 @@ public interface MemberMapper {
 	
 	MemberVO read(Long MEMBER_SQ);
 	
+	MemberVO read_login(MemberVO vo);
+	
 	int insert(MemberVO vo);
 	
 	int insertSelectKey(MemberVO vo);

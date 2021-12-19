@@ -3,13 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+111
+<br>
+${member}
+<br>
+${ID}
+<br>
+${member.ID}
+<br>
+222
+
 <%@ include file="../includes/header.jsp" %>
 
 
-	asd
-
 
 <script>
+	
 	
 </script>
 

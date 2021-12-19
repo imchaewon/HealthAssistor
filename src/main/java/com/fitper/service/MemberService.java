@@ -10,6 +10,7 @@ public interface MemberService {
 	List<MemberVO> getList();
 	List<MemberVO> getList(Criteria cri);
 	MemberVO get(Long MEMBER_SQ);
+	MemberVO login(MemberVO vo);
 	int register(MemberVO vo);
 	Long registerKey(MemberVO vo);
 	int modify(MemberVO vo);

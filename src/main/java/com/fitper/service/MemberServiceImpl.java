@@ -39,6 +39,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public MemberVO login(MemberVO vo) {
+		return mapper.read_login(vo);
+	}
+	
+	@Override
 	public int register(MemberVO vo) {
 		return mapper.insert(vo);
 	}

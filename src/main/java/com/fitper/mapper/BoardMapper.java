@@ -10,7 +10,7 @@ public interface BoardMapper {
 
 	List<BoardVO> getList();
 	
-	BoardVO read(Long bno);
+	BoardVO read(Long MEMBER_SQ);
 	
 	int insert(BoardVO vo);
 	
