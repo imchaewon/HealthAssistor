@@ -6,63 +6,34 @@
 
 <%@include file="/WEB-INF/views/includes/header.jsp"%>
 
-<div class="topWrap">
-	<h1 class="logo"><img src="<%=imgPath%>/logo.png"></h1>
+<style>
+	.sct1{text-align:center;background:snow url("/resources/images/bg_weights.png")space 0/42px fixed;}
+	.sct1 .inWrap{width:1200px;margin:auto;text-align:center;}
+	.sct1 .swiper-slide{display:flex;justify-content:space-evenly;align-items:center;align-self:center;}
+	.sct1 .swiper-slide a{display:block;padding:10px 20px;border-radius:10px;font-weight: bold;border:2px dashed #666;}
+	.sct1 .swiper-slide.p1 a{background:beige;}
+	.sct1 .swiper-slide.p2 a{background:lightsteelblue;}
 	
-	<div class="searchWrap">
-		<form id="tsFrm" name="tsFrm" method="get" action="/product/search.asp">
-			<input type="text" autocomplete="off" name="sword" id="topSearchWord" onkeyup="return searckResurt(event)" placeholder="">
-			<div onclick="javascript:" class="btn_search" style="cursor:pointer"><i class="fa fa-search" aria-hidden="true"></i></div>
-		</form>
-	</div>
-	
-	<div class="rgtWrap">
-		<ul id="logout" style="display:none">
-			<li><a href="javascript:">로그인</a></li>
-			<li><a href="javascript:">회원가입</a></li>
-		</ul>
-		<ul id="login">
-			<li>안녕하세요, 홍길동님</li>
-			<li class="my"><a href="javascript:">마이페이지</a>
-				<ul>
-					<li><a href="javascript:">내 정보 관리</a></li>
-					<li><a href="javascript:">내 게시글</a></li>
-					<li><a href="javascript:">내 댓글</a></li>
-					<li><a href="javascript:">빋은 쪽지</a></li>
-					<li><a href="javascript:">회원 탈퇴</a></li>
-				</ul>
-			</li>
-			<li><a href="javascript:">로그아웃</a></li>
-		</ul>
-	</div>
-
-</div>
-
-<div class="gnbWrap">
-	<div class="gnbBox">
-		<ul>
-			<li><a href="javascript:">내 일일 영양소 & 운동 루틴</a></li>
-			<li><a href="javascript:">운동 추천 & 등록</a></li>
-			<li><a href="javascript:">내 그래프</a></li>
-			<li><a href="javascript:">Health Place</a></li>
-			<li><a href="javascript:">커뮤니티</a></li>
-			<li><a href="javascript:">내 체형 알아보기</a></li>
-		</ul>
-	</div>
-</div>
+	.highcharts-figure{padding:30px 0;}
+	#container{width:1200px;margin:0 auto 50px;}
+</style>
 
 <div class="sct1">
-	<div class="swiper-container">
-		<div class="swiper-wrapper">
-			<div class="swiper-slide p1">
-				<img src="/resources/images/mbnr1.jpg">
+	<div class="inWrap">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide p1">
+					<img src="/resources/images/mbnr1.jpg">
+					<a href="javascript:">운동 찾기</a>
+				</div>
+				<div class="swiper-slide p2">
+					<a href="javascript:">식단관리 하러가기</a>
+					<img src="/resources/images/mbnr2.jpg">
+				</div>
 			</div>
-			<div class="swiper-slide p2">
-				<img src="/resources/images/mbnr2.jpg">
-			</div>
+			<!-- <div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div> -->
 		</div>
-		<!-- <div class="swiper-button-next"></div>
-		<div class="swiper-button-prev"></div> -->
 	</div>
 </div>
 
@@ -83,8 +54,8 @@ const sl4 = new Swiper('.sct1 .swiper-container',{
 	loop:true,
 	paginationClickable:true,
 	paginationType : 'fraction',
-	autoplayDisableOnInteraction:false,
-	autoplay:2500,
+	autoplayDisableOnInteraction:true,
+	autoplay:3000,
 	slidesPerView : 'auto'
 });
 

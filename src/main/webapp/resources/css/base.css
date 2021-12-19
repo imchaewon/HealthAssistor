@@ -151,10 +151,10 @@
   font-family: "iconfont";
   src: url('/css/font/iconfont.eot'); /* IE9*/
   src: local(※),
-  url('/css/font/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('/css/font/iconfont.woff') format('woff'), /* chrome, firefox */
-  url('/css/font/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('/css/font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+  url('/resources/font/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/resources/font/iconfont.woff') format('woff'), /* chrome, firefox */
+  url('/resources/font/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('/resources/font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 

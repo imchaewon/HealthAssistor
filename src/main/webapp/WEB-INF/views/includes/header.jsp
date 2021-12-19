@@ -46,6 +46,8 @@
 	
 	<link href="/resources/css/swiper.min.css" rel="stylesheet">
 	
+	<link href="/resources/vendor/font-awesome/css/NotoSansKR.css" rel="stylesheet" type="text/css">
+	
 	<link rel="stylesheet" href="/resources/css/base.css">
 
 	<link rel="stylesheet" href="/resources/css/style.css">
@@ -59,12 +61,58 @@
 	
 	<script src="https://code.highcharts.com/highcharts.src.js"></script>
 	
+	<script src="/resources/js/common.js"></script>
 	
-
 </head>
+
+
 
 <body>
 
+<div class="topWrap">
+	<h1 class="logo"><a href="/"><img src="<%=imgPath%>/logo.png"></a></h1>
+	
+	<div class="searchWrap">
+		<form id="tsFrm" name="tsFrm" method="get" action="/product/search.asp">
+			<input type="text" autocomplete="off" name="sword" id="topSearchWord" onkeyup="return searckResurt(event)" placeholder="">
+			<div onclick="javascript:" class="btn_search" style="cursor:pointer"><i class="fa fa-search" aria-hidden="true"></i></div>
+		</form>
+	</div>
+	
+	<div class="rgtWrap">
+		<ul id="logout">
+			<li><a href="/member/login">로그인</a></li>
+			<li><a href="/member/join">회원가입</a></li>
+		</ul>
+		<ul id="login" style="display:none">
+			<li>안녕하세요, 홍길동님</li>
+			<li class="my"><a href="javascript:">마이페이지</a>
+				<ul>
+					<li><a href="javascript:">내 정보 관리</a></li>
+					<li><a href="javascript:">내 게시글</a></li>
+					<li><a href="javascript:">내 댓글</a></li>
+					<li><a href="javascript:">빋은 쪽지</a></li>
+					<li><a href="javascript:">회원 탈퇴</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:">로그아웃</a></li>
+		</ul>
+	</div>
+
+</div>
+
+<div class="gnbWrap">
+	<div class="gnbBox">
+		<ul>
+			<li><a href="javascript:">내 일일 영양소 & 운동 루틴</a></li>
+			<li><a href="javascript:">운동 추천 & 등록</a></li>
+			<li><a href="javascript:">내 그래프</a></li>
+			<li><a href="javascript:">Health Place</a></li>
+			<li><a href="javascript:">커뮤니티</a></li>
+			<li><a href="javascript:">내 체형 알아보기</a></li>
+		</ul>
+	</div>
+</div>
 
 
 

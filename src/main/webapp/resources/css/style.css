@@ -1,5 +1,23 @@
 @charset "utf-8";
 
+@font-face{font-family:'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+body, h1, h2, h3, h4, h5, h6, input, textarea, select{font-family:'Noto Sans KR', sans-serif;}
+
+.sitebg1{background:skyblue;}
+.btn1{display:inline-block;width:100%;height:56px;line-height:56px;font-size:18px;color:#fff;font-weight:bold;text-align:center;}
+
+.mgt0{margin-top:0 !important;}
+.mgt5{margin-top:5px !important;}
+.mgt10{margin-top:10px !important;}
+.mgt20{margin-top:20px !important;}
+.mgt30{margin-top:30px !important;}
+.mgt40{margin-top:40px !important;}
+.mgt50{margin-top:50px !important;}
+
+.mgl0{margin-left:0 !important;}
+.mgl10{margin-left:10px !important;}
+.mgl20{margin-left:20px !important;}
+
 body{background:#fff;}
 li,a{color:#333;}
 .topWrap{width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:50px 0 20px;}
@@ -33,9 +51,40 @@ li,a{color:#333;}
 
 
 
-.sct1{width:1200px;margin:auto;text-align:center;}
 
-#container{width:1200px;margin:0 auto 50px;}
+
+.member_wrap{width:800px; padding-top:70px; margin:0 auto; text-align:left;}
+.member_wrap.login {width:360px;} /*로그인페이지만 너비작게*/
+.member_wrap.formType2 {padding-top:0;}
+.member_wrap .title{height:84px; padding-bottom:8px; border-bottom:3px solid #2e2e2e; font-size:30px; line-height:30px; font-weight:bold;}
+.member_wrap.formType2 .title {height:74px; line-height:74px; margin-bottom:10px; padding-bottom:0;}
+.member_wrap .title span.subpw_change{height:84px; padding-bottom:21px; font-size:30px; line-height:81px; font-weight:bold;}
+.member_wrap p.change_noti{box-sizing:border-box; padding:15px 15px 0 10px; text-indent:-7px; font-size:12px; color:#7e7e7e;}
+
+.member_wrap .pw_change_btn_box{text-align:center; border-bottom:1px solid #2e2e2e; padding-bottom:30px; margin-bottom:15px;}
+.member_wrap .pw_change_btn_box a{display:inline-block; width:49.5%;}
+.member_wrap .login_input > li .notif{color:#888; font-size:13px; line-height:18px; padding:0 20px 2px;}
+.member_wrap .title .ftic-join,
+.member_wrap .title .ftic-id,
+.member_wrap .title .ftic-pw{font-size:32px; font-weight:bold;}
+.member_wrap .title span{font-size:15px;}
+.member_wrap .title02{padding-top:15px; overflow:hidden;}
+.member_wrap .title02 .img{float:left;}
+.member_wrap .title02 .txt{display:block; padding:8px 0 0 96px; color:#000; font-size:30px; line-height:40px; font-weight:bold;}
+.member_wrap .title02 .txt .p{display:block; padding:0 2px; color:#888; font-size:13px; line-height:22px;}
+.member_wrap .login_input{margin-top:20px;}
+.member_wrap .login_input.patop{padding-top:15px}
+.member_wrap .login_input li{margin-bottom:10px;}
+.member_wrap .login_input li input[type="text"],
+.member_wrap .login_input li input[type="password"]{width:100%; height:65px; padding:0 0 0 13px; margin:0; border:1px solid #a3a3a3; font-size:15px; line-height:62px; box-sizing:border-box;}
+
+.member_wrap .cklabel{display:inline-block; position:relative; overflow:hidden; font-size:15px; color:#5f5f5f; padding-left:28px; line-height:24px;}
+.member_wrap .cklabel .iconfont{position:absolute; top:50%; left:0; width:24px; height:24px; color:#999; font-size:24px; line-height:28px; font-weight:bold; text-align:center;margin-top:-12px;}
+
+.member_wrap .ck_login input{position:absolute; left:-9999px;}
+.member_wrap .member_link{margin-top:20px; color:#c5c5c5; font-size:15px; line-height:34px; text-align:center;}
+.member_wrap .member_link a{display:inline-block; margin:-5px 15px 0;  vertical-align:middle;}
+
 
 
 

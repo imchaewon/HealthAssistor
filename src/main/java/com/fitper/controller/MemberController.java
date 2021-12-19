@@ -117,8 +117,19 @@ public class MemberController {
 		model.addAttribute("cri",cri);
 	}
 	
+	@GetMapping("/login")
+	public void login() {
+		
+	}
+	
+	@PostMapping("/login_ok")
+	public void login_ok(){
+		
+	}
+	
 	
 }
+
 
 
 
