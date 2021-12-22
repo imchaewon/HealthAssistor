@@ -1,5 +1,7 @@
 package com.fitper.controller;
 
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -115,14 +117,20 @@ public class MemberController {
 		
 	}
 	
-	@GetMapping("/null")
+	@GetMapping("null")
 	public void nullPage(Criteria cri, Model model) {
 		model.addAttribute("cri",cri);
 	}
 	
-	@GetMapping("join")
-	public void join() {
-		
+	@GetMapping("/join")
+	public void join(Model model) {
+		model.addAttribute("pwq", service.getPWQuestion());
+		model.addAttribute("nowYear",Calendar.getInstance().get(Calendar.YEAR));
+	}
+	
+	@PostMapping("getByID")
+	public void getByID(String id, Model model){
+		model.addAttribute("result",service.idDuplChk(id));
 	}
 	
 	@GetMapping("/login")
@@ -138,7 +146,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@PostMapping("/login_ok")
+	@PostMapping("/login")
 	public String login_ok(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr){
 		HttpSession session = req.getSession();
 		MemberVO mem = service.login(vo);
@@ -156,6 +164,8 @@ public class MemberController {
 
 	}
 	
+	
+
 	
 }
 

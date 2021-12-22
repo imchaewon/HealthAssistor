@@ -13,6 +13,10 @@
 		</foreach>
 		</trim>
 	</sql>
+	
+	<select id="getPWQuestion" resultType="map">
+		select * from PW_QUESTION_TL order by QUESTION
+	</select>
 
 	<select id="getList" resultType="com.fitper.domain.MemberVO">
 		select * from MEMBER_TL order by MEMBER_SQ desc
@@ -31,6 +35,10 @@
 	
 	<select id="read" resultType="com.fitper.domain.MemberVO">
 		select * from MEMBER_TL where MEMBER_SQ = #{MEMBER_SQ}
+	</select>
+	
+	<select id="readById" resultType="int">
+		select count(*) from MEMBER_TL where ID = #{ID}
 	</select>
 	
 	<select id="read_login" resultType="com.fitper.domain.MemberVO">

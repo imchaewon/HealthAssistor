@@ -1,17 +1,22 @@
 package com.fitper.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fitper.domain.Criteria;
 import com.fitper.domain.MemberVO;
 
 public interface MemberMapper {
 
+	List<Map<String, String>> getPWQuestion();
+
 	List<MemberVO> getList();
 	
 	MemberVO read(Long MEMBER_SQ);
 	
 	MemberVO read_login(MemberVO vo);
+	
+	int readById(String id);
 	
 	int insert(MemberVO vo);
 	

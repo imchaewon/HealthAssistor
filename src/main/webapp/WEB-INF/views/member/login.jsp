@@ -5,7 +5,7 @@
 
 <%@ include file="../includes/header.jsp" %>
 
-<form method="post" action="/member/login_ok" name="Frm">
+<form method="post" action="/member/login" name="Frm">
 
 <div class="member_wrap login">
 
@@ -17,7 +17,7 @@
 		<li><input type="password" id="PW" name="PW" placeholder="비밀번호"></li>
 		<li><span id="loginCheck" style="color:red; font-size: 17px;"></span></li>
 	</ul>
-	<a href="javascript:loginChk();" class="btn1 sitebg1"><span>로그인</span></a>
+	<a href="javascript:loginChk();" class="btn01"><span>로그인</span></a>
 
 	<!-- 로그인유지 -->
 	<label for="isSave" class="ck_login cklabel mgt5">
@@ -93,7 +93,6 @@ function loginChk() {
 	}
 
 
-	// 2017-01-05 로그인 미리 체크하고 텍스트 뿌려주기 위함.
 	/* var data = $("#Frm").serialize();
 	$.ajax({
 		type : "POST",

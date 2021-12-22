@@ -40,6 +40,8 @@
 	<link rel="stylesheet" href="/resources/css/base.css">
 
 	<link rel="stylesheet" href="/resources/css/style.css">
+	
+	<%@include file="/resources/css/style.css.jsp"%>
 
 
 

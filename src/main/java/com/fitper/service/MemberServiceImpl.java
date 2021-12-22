@@ -1,12 +1,15 @@
 package com.fitper.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fitper.domain.MemberVO;
 import com.fitper.domain.Criteria;
+import com.fitper.domain.MemberVO;
 import com.fitper.mapper.MemberMapper;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +25,11 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	private MemberMapper mapper;
+	
+	@Override
+	public List<Map<String, String>> getPWQuestion() {
+		return mapper.getPWQuestion();
+	}
 
 	@Override
 	public List<MemberVO> getList() {
@@ -41,6 +49,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO login(MemberVO vo) {
 		return mapper.read_login(vo);
+	}
+	
+	@Override
+	public int idDuplChk(String id) {
+		return mapper.readById(id);
 	}
 	
 	@Override
