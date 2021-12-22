@@ -1,6 +1,9 @@
 package com.fitper.controller;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fitper.domain.Criteria;
@@ -128,9 +134,17 @@ public class MemberController {
 		model.addAttribute("nowYear",Calendar.getInstance().get(Calendar.YEAR));
 	}
 	
-	@PostMapping("getByID")
-	public void getByID(String id, Model model){
-		model.addAttribute("result",service.idDuplChk(id));
+	@RequestMapping(value="/getByID", method=RequestMethod.POST)
+	@ResponseBody
+	public int getByID(@RequestBody String id){
+		
+		String $id = id.replace("=",""); //ajax에서 value만 보낼때 =가 자동으로 붙는거 제거
+		
+		if(service.idDuplChk($id) == 0) {
+			return 0;
+		}else {
+			return 1;
+		}
 	}
 	
 	@GetMapping("/login")

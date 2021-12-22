@@ -188,6 +188,8 @@
 $(document).ready(function(){
 	resetSelectEvent();
 	
+	
+	
 
 	/* 기본정보 */
 	//$(":input[name=chkID]").blur(idCheck);

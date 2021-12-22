@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="readById" resultType="int">
-		select count(*) from MEMBER_TL where ID = #{ID}
+		select count(*) from MEMBER_TL where ID = #{id}
 	</select>
 	
 	<select id="read_login" resultType="com.fitper.domain.MemberVO">

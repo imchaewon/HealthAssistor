@@ -8,21 +8,21 @@ function idCheckOk(id) {
 function idDuplChk() {
 	var f = document.Frm;
 	var chkID = f.chkID.value;
-	var formData = "ID="+chkID.trim();
 
 	$.ajax({
 		type:'post',
 		async: false ,
-		url:'/member/list',
-		data:formData,
-		success:function(asd){
-			console.log(asd)
-			if (asd === 1){
-				idCheckOk(tmpID);
+		url:'/member/getByID',
+		data:chkID.trim(),
+		success:function(result){
+			console.log(result);
+			
+			if (result === "f"){
 				$('#span_chkID').css({ "color":"blue" }).html('사용 가능한 ID 입니다.');
+				idCheckOk(tmpID);
 			}else{
-				f.id.value = "";
 				$('#span_chkID').css({ "color":"red" }).html('사용 불가능한 아이디 입니다.');
+				f.id.value = "";
 			}
 		}
 	});
