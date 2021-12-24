@@ -10,6 +10,6 @@ public class MemberVO {
 	private Long MEMBER_SQ, PW_QUESTION_SQ;
 	private String ID, PW, PW_FIND_A, BIRTH, GNDR;
 	private Date JOIN_DATE;
-	private Integer AMR;
+	private Float AMR;
 	
 }

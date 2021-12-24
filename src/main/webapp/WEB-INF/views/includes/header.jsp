@@ -71,13 +71,13 @@
 	</div>
 	
 	<div class="rgtWrap">
-		<c:if test="${member == null}">
+		<c:if test="${loginInfo == null}">
 		<ul id="logout">
 			<li><a href="/member/login">로그인</a></li>
 			<li><a href="/member/join">회원가입</a></li>
 		</ul>
 		</c:if>
-		<c:if test="${member != null}">
+		<c:if test="${loginInfo != null}">
 		<ul id="login">
 			<li>Hi, ${member.ID}님</li>
 			<li class="my"><a href="javascript:">마이페이지</a>

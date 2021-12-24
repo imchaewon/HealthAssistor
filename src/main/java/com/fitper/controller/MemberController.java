@@ -1,9 +1,6 @@
 package com.fitper.controller;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -129,9 +126,34 @@ public class MemberController {
 	}
 	
 	@GetMapping("/join")
-	public void join(Model model) {
+	public String join(Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		
+		// 로그인상태일때 메인으로 이동
+		if(session.getAttribute("loginInfo") != null) {
+			return "redirect:/";
+		}
 		model.addAttribute("pwq", service.getPWQuestion());
 		model.addAttribute("nowYear",Calendar.getInstance().get(Calendar.YEAR));
+		return null;
+	}
+	
+	@PostMapping("/join")
+	public String join_ok(MemberVO vo, RedirectAttributes rttr, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		
+		Long seq = service.registerKey(vo);
+		vo.setMEMBER_SQ(seq);
+		
+		// 로그인 성공시
+		if(seq > 0) {
+			rttr.addFlashAttribute("join_result", 1);
+			session.setAttribute("loginInfo", vo);
+			return "redirect:/";
+		}
+		rttr.addFlashAttribute("join_result", 0);
+		return "redirect:/member/join";
 	}
 	
 	@RequestMapping(value="/getByID", method=RequestMethod.POST)
@@ -156,7 +178,7 @@ public class MemberController {
 	public String logout(HttpServletRequest req) {
 		log.info("logout");
 		HttpSession session = req.getSession();
-		session.removeAttribute("member");
+		session.removeAttribute("loginInfo");
 		return "redirect:/";
 	}
 	
@@ -167,9 +189,10 @@ public class MemberController {
 		
 		if(mem == null) {
 			rttr.addFlashAttribute("result","fail");
+			rttr.addFlashAttribute("id",vo.getID());
 			return "redirect:/member/login";
 		} else {
-			session.setAttribute("member", mem);
+			session.setAttribute("loginInfo", mem);
 			return "redirect:/";
 		}
 		

@@ -44,8 +44,37 @@ function chkEng_N_Num(e){
 
 //[숫자]이외 거르기(제이쿼리)
 $("input:text[numberOnly]").on("keyup", function() {
-	$(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+	$(this).val($(this).val().replace(/[^0-9]/gi,"") );
 });
+
+// 공백 확인
+function chkEmpty(data){
+	if(data.value == "" || data.value == null){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+// 아이디 확인 ##################################################
+/*function checkID(value, min, max) {
+	var RegExp = /^[a-zA-Z0-9_]*$/i;
+	var returnVal = RegExp.test(value) ? true : false;
+	if (typeof(min) != "undefined" && value.length < min) returnVal = false;
+	if (typeof(max) != "undefined" && value.length > max) returnVal = false;
+	return returnVal;
+}
+
+// 비밀번호 확인 ##################################################
+function checkPass(value, min, max) {
+	var RegExp = /^[a-zA-Z0-9\`\~\!\@\#\$\%\^\&\*\_\+\=\|\\\[\]\{\}\:\(\)\;\,\<\.\>\/\?\'\"]*$/i;
+	var returnVal = RegExp.test(value) ? true : false;
+	if (typeof(min) != "undefined" && value.length < min) returnVal = false;
+	if (typeof(max) != "undefined" && value.length > max) returnVal = false;
+	return returnVal;
+}*/
+
+
 
 
 

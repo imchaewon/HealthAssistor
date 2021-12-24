@@ -23,12 +23,12 @@
 	</select>
 	
 	<insert id="insert">
-		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH,GNDR, AMR) values(seq_board.nextVal, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
+		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH,GNDR, AMR) values(MEMBER_SQ.nextVal, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
 	</insert>
 	
 	<insert id="insertSelectKey">
 		<selectKey order="BEFORE" keyProperty="MEMBER_SQ" resultType="long">
-			select seqBoard.nextVal from dual
+			select MEMBER_SQ.nextVal from dual
 		</selectKey>
 		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH,GNDR, AMR) values(#{MEMBER_SQ}, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
 	</insert>

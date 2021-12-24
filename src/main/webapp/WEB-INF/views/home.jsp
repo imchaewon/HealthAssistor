@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%--@ page session="false" --%>
 
 <%@include file="/WEB-INF/views/includes/header.jsp"%>
 
@@ -43,6 +43,12 @@
 
 
 <script>
+
+$(document).ready(function(){
+	if("${join_result}"){
+		alert("회원가입이 완료되었습니다.");
+	}
+});
 
 const sl4 = new Swiper('.sct1 .swiper-container',{
 	pagination: ".sct1 .swiper-pagination",
