@@ -128,6 +128,7 @@ html,body{overflow-x:hidden;}
 .member_wrap .login_input li input[type="password"]{width:100%; height:65px; padding:0 0 0 13px; margin:0; border:1px solid #a3a3a3; font-size:15px; line-height:62px; box-sizing:border-box;}
 
 .member_wrap .cklabel{display:inline-block; position:relative; overflow:hidden; font-size:15px; color:#5f5f5f; padding-left:28px; line-height:24px;}
+.member_wrap .cklabel.on .iconfont{color:<%=cstColor1%>}
 .member_wrap .cklabel .iconfont{position:absolute; top:50%; left:0; width:24px; height:24px; color:#999; font-size:24px; line-height:28px; font-weight:bold; text-align:center;margin-top:-12px;}
 
 .member_wrap .ck_login input{position:absolute; left:-9999px;}

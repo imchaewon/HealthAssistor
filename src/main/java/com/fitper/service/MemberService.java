@@ -13,6 +13,7 @@ public interface MemberService {
 	List<MemberVO> getList(Criteria cri);
 	MemberVO get(Long MEMBER_SQ);
 	MemberVO login(MemberVO vo);
+	int login_pw_fail(MemberVO vo);
 	int idDuplChk(String id);
 	int register(MemberVO vo);
 	Long registerKey(MemberVO vo);

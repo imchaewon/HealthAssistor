@@ -11,5 +11,6 @@ public class MemberVO {
 	private String ID, PW, PW_FIND_A, BIRTH, GNDR;
 	private Date JOIN_DATE;
 	private Float AMR;
+	private boolean autoLogin2;
 	
 }

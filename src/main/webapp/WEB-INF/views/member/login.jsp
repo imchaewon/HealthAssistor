@@ -20,10 +20,10 @@
 	<a href="javascript:loginChk();" class="btn01"><span>로그인</span></a>
 
 	<!-- 로그인유지 -->
-	<label for="isSave" class="ck_login cklabel mgt5">
+	<label class="ck_login cklabel mgt5">
 		<div class="iconfont ftic-success"></div>
-		<input type="checkbox" id="isSave" name="isSave" class="ckbox" value="T">
-		아이디저장
+		<input type="checkbox" id="autoLogin" name="autoLogin" class="ckbox">
+		자동로그인
 	</label>
 	<!-- 로그인유지 끝 -->
 
@@ -42,11 +42,11 @@
 
 <script>
 
-if("${result}" == "fail"){
+/*if("${result}" == "fail"){
 	$("#ID").val("${id}")
 	
 	alert("아이디/비밀번호를 확인해주세요.");
-}
+}*/
 
 $(document).ready(function(){
 	$("#ID").focus();
@@ -54,16 +54,13 @@ $(document).ready(function(){
 		if (event.which == 13) loginChk();
 	});
 
-	if($("#isSave").prop("checked"))
-	{
-		$("#isSave").parent().closest("label").addClass("on");
-	}
-	else
-	{
-		$("#isSave").parent().closest("label").removeClass("on");
+	if($("#autoLogin").prop("checked")){
+		$("#autoLogin").parent().closest("label").addClass("on");
+	}else{
+		$("#autoLogin").parent().closest("label").removeClass("on");
 	}
 
-	$("#isSave").click(function(){
+	$("#autoLogin").click(function(){
 		var there = $(this).parent().closest("label");
 		if($(this).prop("checked")){
 			there.addClass("on");
@@ -90,28 +87,41 @@ function loginChk() {
 		$("#PW").focus();
 		return;
 	}
-	if(chkNull(isSave)){
-		isSave = "F";
-	}
-
-
-	/* var data = $("#Frm").serialize();
+	
+	//자동로그인 반환할 변수
+    const autoLogin = $('input[name=autoLogin]').is(":checked");
+	
+   // console.log(autoLogin);
+	
+    /* const userInfo = {
+            autoLogin : autoLogin
+    }; */
+    
+	// ajax로 로그인 처리
+	var data = $(document.Frm).serialize();
+	//console.log(data);
+	//data += JSON.stringify(userInfo);
+	data += "&autoLogin2=" + autoLogin; // 로그인정보에 자동로그인 사용유무 추가
+	//console.log(data);
 	$.ajax({
 		type : "POST",
 		async : false ,
 		data : data ,
-		url  : "./login_ajaxCheck.asp",
+		url  : "/member/login",
 		success : function(data) {
-			if(data == "T"){
-				document.Frm.submit();
+			if(data == "success"){
+				location.replace("/");
 			}else{
 				$('#loginCheck').html(data);
 				return false;
 			}
+		},
+		error:function(request,status,error){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
-	}); */
+	});
 
-	document.Frm.submit();
+	//document.Frm.submit();
 }
 </script>
 

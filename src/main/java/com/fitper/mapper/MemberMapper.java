@@ -16,6 +16,8 @@ public interface MemberMapper {
 	
 	MemberVO read_login(MemberVO vo);
 	
+	int read_login_pw_fail(MemberVO vo);
+	
 	int readById(String id);
 	
 	int insert(MemberVO vo);

@@ -2,7 +2,9 @@ package com.fitper.controller;
 
 import java.util.Calendar;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -182,23 +184,40 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@PostMapping("/login")
-	public String login_ok(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr){
+	@PostMapping(value="/login", produces="application/text; charset=UTF-8")
+	@ResponseBody
+	public String login_ok(MemberVO vo, HttpServletRequest req, HttpServletResponse resp){
 		HttpSession session = req.getSession();
 		MemberVO mem = service.login(vo);
+		int fail = service.login_pw_fail(vo);
 		
-		if(mem == null) {
-			rttr.addFlashAttribute("result","fail");
-			rttr.addFlashAttribute("id",vo.getID());
-			return "redirect:/member/login";
-		} else {
+		if(mem != null && fail == 0) { // 로그인 성공
 			session.setAttribute("loginInfo", mem);
-			return "redirect:/";
+			
+			// 자동로그인 체크시 처리
+			if(vo.isAutoLogin2()) {
+				
+				//loginCookie라는 키로 세션아이디를 담아 쿠키를 생성, 같은이름의 쿠키가 있으면 덮어씀
+				Cookie loginCookie = new Cookie("loginCookie",session.getId());
+				
+				/*쿠키의 저장경로를 시작경로로 설정해야 모든페이지에서 접근 가능.
+				"/member/list" 이처럼 특정페이지로 설정하면 특정페이지에 접속했을때만 쿠키사용이 가능함
+				아예 안쓰면 현재 페이지에서만 사용이 가능함*/
+				loginCookie.setPath("/");
+				long limitTime = 60*60*24*90; //90일의 시간을 저장(초 단위)
+				loginCookie.setMaxAge((int) limitTime); //초단위로 쿠키유지시간 설정
+				resp.addCookie(loginCookie); //response에 쿠키를담아 클라이언트에게 보낸다
+				
+			}
+			
+			
+			return "success";
+		}else if(fail == 1) { // 비밀번호 틀림
+			return "아이디/비밀번호를 확인해주세요.";
+		}else{ // 아이디 틀림
+			return "등록된 정보가 없습니다.";
 		}
 		
-
-		//model.addAttribute("member", session.getAttribute("member"));
-
 	}
 	
 	

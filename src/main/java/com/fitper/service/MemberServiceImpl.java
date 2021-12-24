@@ -50,6 +50,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public int login_pw_fail(MemberVO vo) {
+		return mapper.read_login_pw_fail(vo);
+	}
+	
+	@Override
 	public int idDuplChk(String id) {
 		return mapper.readById(id);
 	}

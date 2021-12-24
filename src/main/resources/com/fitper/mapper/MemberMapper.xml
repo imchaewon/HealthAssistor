@@ -45,6 +45,10 @@
 		select * from MEMBER_TL where ID = #{ID} and PW = #{PW}
 	</select>
 	
+	<select id="read_login_pw_fail" resultType="int">
+		select count(*) from MEMBER_TL where ID = #{ID} and PW != #{PW}
+	</select>
+	
 	<delete id="delete">
 		delete from MEMBER_TL where MEMBER_SQ = #{MEMBER_SQ}
 	</delete>
