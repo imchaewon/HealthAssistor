@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Board Modify/Delete</h1>
@@ -122,7 +122,7 @@
 </script>
 
 
-<%@ include file="../includes/footer.jsp" %>
+<%@include file="/WEB-INF/views/includes/footer.jsp"%>
 
 
 

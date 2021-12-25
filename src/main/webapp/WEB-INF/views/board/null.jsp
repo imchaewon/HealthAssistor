@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
 	<h2 style="padding:20px 0">잘못된 경로입니다. 목록으로 이동합니다...</h2>
 	
@@ -21,7 +21,7 @@
 	</script>
 
 
-<%@ include file="../includes/footer.jsp" %>
+<%@include file="/WEB-INF/views/includes/footer.jsp"%>
 
 
 

@@ -14,6 +14,8 @@ public interface MemberService {
 	MemberVO get(Long MEMBER_SQ);
 	MemberVO login(MemberVO vo);
 	int login_pw_fail(MemberVO vo);
+	int setSessionKey(MemberVO vo);
+	MemberVO autoLogin(String SESSION_ID);
 	int idDuplChk(String id);
 	int register(MemberVO vo);
 	Long registerKey(MemberVO vo);

@@ -46,12 +46,22 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public MemberVO login(MemberVO vo) {
-		return mapper.read_login(vo);
+		return mapper.login(vo);
 	}
 	
 	@Override
 	public int login_pw_fail(MemberVO vo) {
-		return mapper.read_login_pw_fail(vo);
+		return mapper.login_pw_fail(vo);
+	}
+	
+	@Override
+	public int setSessionKey(MemberVO vo) {
+		return mapper.setSessionKey(vo);
+	}
+	
+	@Override
+	public MemberVO autoLogin(String SESSION_ID) {
+		return mapper.autoLogin(SESSION_ID);
 	}
 	
 	@Override

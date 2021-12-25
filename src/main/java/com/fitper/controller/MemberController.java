@@ -35,19 +35,12 @@ public class MemberController {
 	
 	private final MemberService service;
 	
-//	@GetMapping("/list")
-//	public void list(Model model) {
-//		log.info("list.............");
-//		
-//		model.addAttribute("list", service.getList());
-//	}
-	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 		
-		log.info("------------------------");
-		log.info(cri);
-		log.info("list.............");
+//		log.info("------------------------");
+//		log.info(cri);
+//		log.info("list.............");
 		
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));
@@ -172,45 +165,45 @@ public class MemberController {
 	}
 	
 	@GetMapping("/login")
-	public void login() {
+	public String login(HttpServletRequest req) {
 		
-	}
-	
-	@GetMapping("/logout")
-	public String logout(HttpServletRequest req) {
-		log.info("logout");
+		// 로그인상태일때 메인으로 이동
 		HttpSession session = req.getSession();
-		session.removeAttribute("loginInfo");
-		return "redirect:/";
+		if(session.getAttribute("loginInfo") != null) {
+			return "redirect:/";
+		}
+		return null;
 	}
 	
 	@PostMapping(value="/login", produces="application/text; charset=UTF-8")
 	@ResponseBody
 	public String login_ok(MemberVO vo, HttpServletRequest req, HttpServletResponse resp){
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(); //세션 불러오기
 		MemberVO mem = service.login(vo);
 		int fail = service.login_pw_fail(vo);
 		
 		if(mem != null && fail == 0) { // 로그인 성공
+			
+//			log.info("------------------------");
+//			log.info(vo.isAutoLogin());
+			
+			//	세션에 회원정보 저장
 			session.setAttribute("loginInfo", mem);
 			
 			// 자동로그인 체크시 처리
-			if(vo.isAutoLogin2()) {
-				
-				//loginCookie라는 키로 세션아이디를 담아 쿠키를 생성, 같은이름의 쿠키가 있으면 덮어씀
-				Cookie loginCookie = new Cookie("loginCookie",session.getId());
-				
-				/*쿠키의 저장경로를 시작경로로 설정해야 모든페이지에서 접근 가능.
-				"/member/list" 이처럼 특정페이지로 설정하면 특정페이지에 접속했을때만 쿠키사용이 가능함
-				아예 안쓰면 현재 페이지에서만 사용이 가능함*/
-				loginCookie.setPath("/");
-				long limitTime = 60*60*24*90; //90일의 시간을 저장(초 단위)
-				loginCookie.setMaxAge((int) limitTime); //초단위로 쿠키유지시간 설정
+			if(vo.isAutoLogin()) {
+				Cookie loginCookie = new Cookie("loginCookie", session.getId()); //쿠키 생성. 세션id를 담음
+				loginCookie.setPath("/"); //쿠키를 조회 가능한 위치
+				loginCookie.setMaxAge(60 * 60 * 24 * 90); //초단위로 쿠키유지기간 설정 (90일)
 				resp.addCookie(loginCookie); //response에 쿠키를담아 클라이언트에게 보낸다
 				
+//				log.info("-----------------------------------------------------------------------------------");
+//				log.info(vo);
+				vo.setSESSION_ID(session.getId()); //세션id를 vo에 담는다
+				int test = service.setSessionKey(vo); //세션id를 db에 update한다
+//				log.info("----------------------------");
+//				log.info(test);
 			}
-			
-			
 			return "success";
 		}else if(fail == 1) { // 비밀번호 틀림
 			return "아이디/비밀번호를 확인해주세요.";
@@ -220,7 +213,18 @@ public class MemberController {
 		
 	}
 	
-	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest req,HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+		session.removeAttribute("loginInfo"); // 로그인세션 삭제
+		
+		Cookie cookic = new Cookie("loginCookie", null); // choiceCookieName(쿠키 이름)에 대한 값을 null로 지정
+		cookic.setPath("/");
+		cookic.setMaxAge(0); // 유효시간을 0으로 설정
+		resp.addCookie(cookic); // 응답 헤더에 추가해서 없어지도록 함
+		
+		return "redirect:/";
+	}
 
 	
 }

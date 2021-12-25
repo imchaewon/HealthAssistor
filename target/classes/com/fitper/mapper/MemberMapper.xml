@@ -41,12 +41,20 @@
 		select count(*) from MEMBER_TL where ID = #{id}
 	</select>
 	
-	<select id="read_login" resultType="com.fitper.domain.MemberVO">
+	<select id="login" resultType="com.fitper.domain.MemberVO">
 		select * from MEMBER_TL where ID = #{ID} and PW = #{PW}
 	</select>
 	
-	<select id="read_login_pw_fail" resultType="int">
+	<select id="login_pw_fail" resultType="int">
 		select count(*) from MEMBER_TL where ID = #{ID} and PW != #{PW}
+	</select>
+	
+	<update id="setSessionKey">
+		update MEMBER_TL SET SESSION_ID = #{SESSION_ID} WHERE ID = #{ID}
+	</update>
+	
+	<select id="autoLogin" resultType="com.fitper.domain.MemberVO">
+		select * from MEMBER_TL where #{SESSION_ID} = SESSION_ID
 	</select>
 	
 	<delete id="delete">

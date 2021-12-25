@@ -297,6 +297,7 @@ a:focus, a:hover, a:active {
 	text-decoration:none;
 }
 
+label{margin:0;}
 label,
 button {
 	cursor:pointer;

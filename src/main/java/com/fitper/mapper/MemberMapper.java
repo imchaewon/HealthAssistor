@@ -14,11 +14,15 @@ public interface MemberMapper {
 	
 	MemberVO read(Long MEMBER_SQ);
 	
-	MemberVO read_login(MemberVO vo);
+	MemberVO login(MemberVO vo);
 	
-	int read_login_pw_fail(MemberVO vo);
+	int login_pw_fail(MemberVO vo);
 	
 	int readById(String id);
+	
+	int setSessionKey(MemberVO vo);
+	
+	MemberVO autoLogin(String SESSION_ID);
 	
 	int insert(MemberVO vo);
 	

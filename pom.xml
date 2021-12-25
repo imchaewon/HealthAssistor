@@ -172,6 +172,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- ajax↔컨트롤러 통신을 위한 잭슨 -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>

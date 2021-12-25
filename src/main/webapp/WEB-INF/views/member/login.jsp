@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
 <form method="post" action="/member/login" name="Frm">
 
@@ -25,6 +25,7 @@
 		<input type="checkbox" id="autoLogin" name="autoLogin" class="ckbox">
 		자동로그인
 	</label>
+	<p class="tipTxt">보안을 위해 개인PC에서만 이용해주세요</p>
 	<!-- 로그인유지 끝 -->
 
 
@@ -88,8 +89,8 @@ function loginChk() {
 		return;
 	}
 	
-	//자동로그인 반환할 변수
-    const autoLogin = $('input[name=autoLogin]').is(":checked");
+	// 자동로그인 체크값 반환할 변수
+    //const autoLogin = $('input[name=autoLogin]').is(":checked");
 	
    // console.log(autoLogin);
 	
@@ -101,7 +102,7 @@ function loginChk() {
 	var data = $(document.Frm).serialize();
 	//console.log(data);
 	//data += JSON.stringify(userInfo);
-	data += "&autoLogin2=" + autoLogin; // 로그인정보에 자동로그인 사용유무 추가
+	//data += "&autoLogin2=" + autoLogin; // 로그인정보에 자동로그인 사용유무 추가
 	//console.log(data);
 	$.ajax({
 		type : "POST",
@@ -125,7 +126,7 @@ function loginChk() {
 }
 </script>
 
-<%@ include file="../includes/footer.jsp" %>
+<%@include file="/WEB-INF/views/includes/footer.jsp"%>
 
 
 
