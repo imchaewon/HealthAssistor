@@ -40,8 +40,18 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO get(Long bno) {
-		return mapper.read(bno);
+	public MemberVO get(Long MEMBER_SQ) {
+		return mapper.read(MEMBER_SQ);
+	}
+	
+	@Override
+	public List<Map<String, String>> findID(String BIRTH) {
+		return mapper.findID(BIRTH);
+	}
+	
+	@Override
+	public String findPW(MemberVO vo) {
+		return mapper.findPW(vo);
 	}
 	
 	@Override
@@ -86,8 +96,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int remove(Long bno) {
-		return mapper.delete(bno);
+	public int remove(Long MEMBER_SQ) {
+		return mapper.delete(MEMBER_SQ);
 	}
 
 	@Override

@@ -29,7 +29,7 @@ function idChk() {
 		type:'post',
 		async:false,
 		url:'/member/getByID',
-		data:chkID.trim(),
+		data:chkID.trim(), //사용자가 입력한 ID 전송
 		success:function(result){
 			if (result){
 				$('#span_chkID').css({ "color":"red" }).html('사용 불가능한 아이디 입니다.');

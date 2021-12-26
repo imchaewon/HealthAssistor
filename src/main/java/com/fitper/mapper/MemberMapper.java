@@ -14,6 +14,12 @@ public interface MemberMapper {
 	
 	MemberVO read(Long MEMBER_SQ);
 	
+	List<Map<String, String>> findID(String BIRTH);
+	
+	String findPW(MemberVO vo);
+	
+	
+	
 	MemberVO login(MemberVO vo);
 	
 	int login_pw_fail(MemberVO vo);

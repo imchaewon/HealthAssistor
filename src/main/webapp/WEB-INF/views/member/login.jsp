@@ -32,8 +32,8 @@
 	<div class="member_link">
 		<!-- <a href="javascript:;" class="join_pop_cls">회원가입</a> | -->
 		<a href="./join.asp?redirect=https://demo3.mallup.co.kr/Default.asp">회원가입</a> |
-		<a href="./find_id_sms.asp">아이디찾기</a> |
-		<a href="./find_pw_sms.asp">비밀번호찾기</a>
+		<a href="./find_id">아이디찾기</a> |
+		<a href="./find_pw">비밀번호찾기</a>
 	</div>
 	
 

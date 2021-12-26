@@ -41,6 +41,18 @@
 		select count(*) from MEMBER_TL where ID = #{id}
 	</select>
 	
+	<select id="findID" resultType="map">
+		select ID, TO_CHAR(JOIN_DATE, 'yyyy-mm-dd hh24:mi:ss') AS JOIN_DATE from MEMBER_TL where BIRTH = ${BIRTH}
+	</select>
+
+	<select id="findPW" resultType="string">
+		select ID from MEMBER_TL where ID = #{ID} and PW_QUESTION_SQ = #{PW_QUESTION_SQ} and PW_FIND_A = #{PW_FIND_A}
+	</select>
+
+	<update id="changePW">
+		update MEMBER_TL set PW = #{PW} where ID = ${ID};
+	</update>
+	
 	<select id="login" resultType="com.fitper.domain.MemberVO">
 		select * from MEMBER_TL where ID = #{ID} and PW = #{PW}
 	</select>

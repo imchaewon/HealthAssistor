@@ -1,6 +1,8 @@
 package com.fitper.controller;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -154,10 +156,9 @@ public class MemberController {
 	@RequestMapping(value="/getByID", method=RequestMethod.POST)
 	@ResponseBody
 	public int getByID(@RequestBody String id){
+		id = id.replace("=",""); //ajax에서 문자열 보낼때 =안쓰면 자동으로 붙는거 제거
 		
-		String $id = id.replace("=",""); //ajax에서 value만 보낼때 =가 자동으로 붙는거 제거
-		
-		if(service.idDuplChk($id) == 0) {
+		if(service.idDuplChk(id) == 0) {
 			return 0;
 		}else {
 			return 1;
@@ -224,6 +225,42 @@ public class MemberController {
 		resp.addCookie(cookic); // 응답 헤더에 추가해서 없어지도록 함
 		
 		return "redirect:/";
+	}
+
+	@GetMapping("find_id")
+	public void findID() {
+		
+	}
+	
+	@PostMapping("/find_id")
+	@ResponseBody
+	public List<Map<String,String>> findID_ok(@RequestBody String BIRTH) {
+//		log.info("=========");
+//		log.info(BIRTH);
+		BIRTH = BIRTH.replace("=","");
+		
+		List<Map<String,String>> listID = service.findID(BIRTH);
+		
+		log.info("=========");
+		log.info(listID);
+		
+		return listID;
+		
+	}
+	
+	@GetMapping("/find_pw")
+	public void findPW(Model model) {
+		model.addAttribute("pwq", service.getPWQuestion());
+	}
+	
+	@PostMapping("/find_pw_ok")
+	public void findPW_ok(MemberVO vo, Model model) {
+		log.info("========");
+		log.info(vo);
+		String ID = service.findPW(vo);
+		
+		model.addAttribute("ID",ID);
+		
 	}
 
 	

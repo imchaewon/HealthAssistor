@@ -12,6 +12,9 @@ public interface MemberService {
 	List<MemberVO> getList();
 	List<MemberVO> getList(Criteria cri);
 	MemberVO get(Long MEMBER_SQ);
+	List<Map<String, String>> findID(String BIRTH);
+	String findPW(MemberVO vo);
+	
 	MemberVO login(MemberVO vo);
 	int login_pw_fail(MemberVO vo);
 	int setSessionKey(MemberVO vo);
