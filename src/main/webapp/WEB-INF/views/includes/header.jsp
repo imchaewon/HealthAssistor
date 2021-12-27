@@ -79,14 +79,13 @@
 		</c:if>
 		<c:if test="${loginInfo != null}">
 		<ul id="login">
-			<li>Hi, ${member.ID}님</li>
-			<li class="my"><a href="javascript:">마이페이지</a>
+			<li>Hi, ${loginInfo.ID}님</li>
+			<li class="my"><a href="/my/main">마이페이지</a>
 				<ul>
-					<li><a href="javascript:">내 정보 관리</a></li>
-					<li><a href="javascript:">내 게시글</a></li>
-					<li><a href="javascript:">내 댓글</a></li>
-					<li><a href="javascript:">빋은 쪽지</a></li>
-					<li><a href="javascript:">회원 탈퇴</a></li>
+					<li><a href="/my/main">내 정보 관리</a></li>
+					<li><a href="/my/post">내 게시글</a></li>
+					<li><a href="/my/comment">내 댓글</a></li>
+					<li><a href="/my/message">받은 쪽지</a></li>
 				</ul>
 			</li>
 			<li><a href="/member/logout">로그아웃</a></li>
@@ -99,7 +98,7 @@
 <div class="gnbWrap">
 	<div class="gnbBox">
 		<ul>
-			<li><a href="javascript:">내 일일 영양소 & 운동 루틴</a></li>
+			<li><a href="/my/message">내 일일 영양소 & 운동 루틴</a></li>
 			<li><a href="javascript:">운동 추천 & 등록</a></li>
 			<li><a href="javascript:">내 그래프</a></li>
 			<li><a href="javascript:">Health Place</a></li>

@@ -62,7 +62,7 @@
 			
 			
 			<div class="al-c mgt20">
-				<a href="javascript:complete()" class="btn03" style="margin-right:10px;">확인</a>
+				<a href="javascript:complete()" class="btn03" onkeyup="if(event.keyCode == 32) complete()" style="margin-right:10px;">확인</a>
 				<a href="javascript:history.go(-1);" class="btn03 bg_gray">취소</a>
 			</div>
 			

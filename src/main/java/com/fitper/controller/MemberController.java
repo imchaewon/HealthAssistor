@@ -75,7 +75,7 @@ public class MemberController {
 		
 		rttr.addFlashAttribute("result", bno);
 		
-		return "redirect:/Member/list";
+		return "redirect:/member/list";
 		
 	}
 	
@@ -173,6 +173,7 @@ public class MemberController {
 		if(session.getAttribute("loginInfo") != null) {
 			return "redirect:/";
 		}
+		
 		return null;
 	}
 	
@@ -185,10 +186,7 @@ public class MemberController {
 		
 		if(mem != null && fail == 0) { // 로그인 성공
 			
-//			log.info("------------------------");
-//			log.info(vo.isAutoLogin());
-			
-			//	세션에 회원정보 저장
+			// 세션에 회원정보 저장
 			session.setAttribute("loginInfo", mem);
 			
 			// 자동로그인 체크시 처리
@@ -198,19 +196,16 @@ public class MemberController {
 				loginCookie.setMaxAge(60 * 60 * 24 * 90); //초단위로 쿠키유지기간 설정 (90일)
 				resp.addCookie(loginCookie); //response에 쿠키를담아 클라이언트에게 보낸다
 				
-//				log.info("-----------------------------------------------------------------------------------");
-//				log.info(vo);
 				vo.setSESSION_ID(session.getId()); //세션id를 vo에 담는다
 				int test = service.setSessionKey(vo); //세션id를 db에 update한다
-//				log.info("----------------------------");
-//				log.info(test);
 			}
-			return "success";
 		}else if(fail == 1) { // 비밀번호 틀림
-			return "아이디/비밀번호를 확인해주세요.";
+			return "pwfail";
 		}else{ // 아이디 틀림
-			return "등록된 정보가 없습니다.";
+			return "idfail";
 		}
+		
+		return null;
 		
 	}
 	
@@ -228,7 +223,14 @@ public class MemberController {
 	}
 
 	@GetMapping("find_id")
-	public void findID() {
+	public String findID(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		
+		// 로그인한 회원이 방문했을경우 메인으로 이동
+		if(session.getAttribute("loginInfo") != null){ 
+			return "redirect:/";
+		}
+		return null;
 		
 	}
 	
@@ -241,27 +243,60 @@ public class MemberController {
 		
 		List<Map<String,String>> listID = service.findID(BIRTH);
 		
-		log.info("=========");
-		log.info(listID);
+//		log.info("=========");
+//		log.info(listID);
 		
 		return listID;
 		
 	}
 	
 	@GetMapping("/find_pw")
-	public void findPW(Model model) {
+	public String findPW(HttpServletRequest req, Model model) {
 		model.addAttribute("pwq", service.getPWQuestion());
+		
+		HttpSession session = req.getSession();
+		
+		// 로그인한 회원이 방문했을경우 메인으로 이동
+		if(session.getAttribute("loginInfo") != null){ 
+			return "redirect:/";
+		}
+		return null;
 	}
 	
 	@PostMapping("/find_pw_ok")
 	public void findPW_ok(MemberVO vo, Model model) {
-		log.info("========");
-		log.info(vo);
+//		log.info("========");
+//		log.info(vo);
 		String ID = service.findPW(vo);
 		
 		model.addAttribute("ID",ID);
-		
 	}
+	
+	@PostMapping("/change_pw_ok")
+	@ResponseBody
+	public int changePW(MemberVO vo, Model model) {
+//		log.info("========");
+//		log.info(vo);
+		int result = service.changePW(vo);
+//		log.info("=======");
+//		log.info(result);
+		return result;
+	}
+	
+	@GetMapping("/secession")
+	public String secession(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		
+		//로그아웃상태라면 로그인페이지로 이동
+		if(session.getAttribute("loginInfo") == null) {
+			return "redirect:login";
+		}
+		return null;
+	}
+	
+	
+	
+	
 
 	
 }

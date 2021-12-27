@@ -14,7 +14,7 @@ public interface MemberService {
 	MemberVO get(Long MEMBER_SQ);
 	List<Map<String, String>> findID(String BIRTH);
 	String findPW(MemberVO vo);
-	
+	int changePW(MemberVO vo);
 	MemberVO login(MemberVO vo);
 	int login_pw_fail(MemberVO vo);
 	int setSessionKey(MemberVO vo);

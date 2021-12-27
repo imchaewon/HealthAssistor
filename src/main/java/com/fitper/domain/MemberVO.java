@@ -8,7 +8,7 @@ import lombok.Data;
 public class MemberVO {
 
 	private Long MEMBER_SQ, PW_QUESTION_SQ;
-	private String ID, PW, PW_FIND_A, BIRTH, GNDR, SESSION_ID;
+	private String ID, PW, PW_FIND_A, BIRTH, GNDR, SESSION_ID, HGHT, WGHT, prevPage;
 	private Date JOIN_DATE;
 	private Float AMR;
 	private boolean autoLogin;

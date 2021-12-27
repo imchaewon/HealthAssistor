@@ -18,7 +18,7 @@ public interface MemberMapper {
 	
 	String findPW(MemberVO vo);
 	
-	
+	int changePW(MemberVO vo);
 	
 	MemberVO login(MemberVO vo);
 	

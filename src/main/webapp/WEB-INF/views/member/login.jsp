@@ -21,7 +21,7 @@
 
 	<!-- 로그인유지 -->
 	<label class="ck_login cklabel mgt5">
-		<div class="iconfont ftic-success"></div>
+		<span class="iconfont ftic-success"></span>
 		<input type="checkbox" id="autoLogin" name="autoLogin" class="ckbox">
 		자동로그인
 	</label>
@@ -50,8 +50,11 @@
 }*/
 
 $(document).ready(function(){
+	
+	var prevPage = "${prevPage}";
+
 	$("#ID").focus();
-	$("#PW").keypress(function(){
+	$("#ID, #PW").keydown(function(){
 		if (event.which == 13) loginChk();
 	});
 
@@ -100,7 +103,6 @@ function loginChk() {
     
 	// ajax로 로그인 처리
 	var data = $(document.Frm).serialize();
-	//console.log(data);
 	//data += JSON.stringify(userInfo);
 	//data += "&autoLogin2=" + autoLogin; // 로그인정보에 자동로그인 사용유무 추가
 	//console.log(data);
@@ -110,11 +112,16 @@ function loginChk() {
 		data : data ,
 		url  : "/member/login",
 		success : function(data) {
-			if(data == "success"){
-				location.replace("/");
-			}else{
-				$('#loginCheck').html(data);
-				return false;
+			if(data == "pwfail"){
+				$('#loginCheck').html("아이디/비밀번호를 확인해주세요.");
+			}else if(data == "idfail"){
+				$('#loginCheck').html("등록된 정보가 없습니다.");
+			}else{ // 로그인 성공
+				if(window.location.pathname != "/member/login"){ // 로그인이필요한 페이지를 들어가서 튕겨온경우
+					window.location.replace(window.location.href); // 이전페이지로 이동
+				}else{ // 로그인이 필요없는 페이지 또는 메인에서 온경우
+					window.location.replace(document.referrer); // 이전페이지(현재페이지에 저장된 url)로 이동
+				}
 			}
 		},
 		error:function(request,status,error){

@@ -55,6 +55,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public int changePW(MemberVO vo) {
+		return mapper.changePW(vo);
+	}
+	
+	@Override
 	public MemberVO login(MemberVO vo) {
 		return mapper.login(vo);
 	}

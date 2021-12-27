@@ -222,7 +222,7 @@ $(document).ready(function(){
 
 function submitChk(){
 	var f = document.Frm;
-	chkEmpty(f.chkID);
+
 	if (chkEmpty(f.chkID)) {
 		alert("아이디를 입력해 주세요.");
 		f.chkID.focus();
