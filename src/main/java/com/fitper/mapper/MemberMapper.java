@@ -12,8 +12,6 @@ public interface MemberMapper {
 
 	List<MemberVO> getList();
 	
-	MemberVO read(Long MEMBER_SQ);
-	
 	List<Map<String, String>> findID(String BIRTH);
 	
 	String findPW(MemberVO vo);
@@ -34,13 +32,17 @@ public interface MemberMapper {
 	
 	int insertSelectKey(MemberVO vo);
 	
-	int update(MemberVO vo);
-	
 	int delete(Long MEMBER_SQ);
 	
 	List<MemberVO> getListWithPaging(Criteria cri);
 	
 	int getTotalCount(Criteria cri);
+
+	MemberVO getMoreInfo(String ID);
+	
+	void EDIT_MEMBER_INFO_PROCEDURE(Map<String,Object> map);
+	
+	void DEL_MEMBER_INFO_PROCEDURE(Map<String, String> map);
 	
 }
 

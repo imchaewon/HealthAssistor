@@ -66,7 +66,7 @@
 
 	<div class="mgt20 btnWrap">
 		<a href="javascript:submitChk()" class="btn03" style="margin-right:10px;" onkeyup="if(event.keyCode == 32) submitChk()">확인</a>
-		<a href="javascript:window.close()" class="btn03 bg_gray">취소</a>
+		<a href="javascript:history.go(-1)" class="btn03 bg_gray">취소</a>
 	</div>
 	
 	

@@ -30,10 +30,9 @@
 
 
 	<div class="member_link">
-		<!-- <a href="javascript:;" class="join_pop_cls">회원가입</a> | -->
-		<a href="./join.asp?redirect=https://demo3.mallup.co.kr/Default.asp">회원가입</a> |
-		<a href="./find_id">아이디찾기</a> |
-		<a href="./find_pw">비밀번호찾기</a>
+		<a href="/member/join">회원가입</a> |
+		<a href="/member/find_id">아이디찾기</a> |
+		<a href="/member/find_pw">비밀번호찾기</a>
 	</div>
 	
 

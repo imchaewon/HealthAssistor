@@ -38,11 +38,6 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVO> getList(Criteria cri) {
 		return mapper.getListWithPaging(cri);
 	}
-
-	@Override
-	public MemberVO get(Long MEMBER_SQ) {
-		return mapper.read(MEMBER_SQ);
-	}
 	
 	@Override
 	public List<Map<String, String>> findID(String BIRTH) {
@@ -96,11 +91,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int modify(MemberVO vo) {
-		return mapper.update(vo);
-	}
-
-	@Override
 	public int remove(Long MEMBER_SQ) {
 		return mapper.delete(MEMBER_SQ);
 	}
@@ -109,6 +99,27 @@ public class MemberServiceImpl implements MemberService{
 	public int getTotal(Criteria cri) {
 		return mapper.getTotalCount(cri);
 	}
+
+	@Override
+	public MemberVO getMoreInfo(String ID) {
+		return mapper.getMoreInfo(ID);
+	}
+	
+	@Override
+	public void updateInfo(Map<String,Object> map) {
+//		log.info("=======");
+//		log.info(map);
+		mapper.EDIT_MEMBER_INFO_PROCEDURE(map);
+	}
+	
+	@Override
+	public void deleteInfo(Map<String,String> map) {
+//		log.info("=======");
+//		log.info(map);
+		mapper.DEL_MEMBER_INFO_PROCEDURE(map);
+	}
+	
+	
 
 	
 

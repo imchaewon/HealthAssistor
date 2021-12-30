@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,14 +47,6 @@ public class MemberController {
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));
 	}
 	
-	@GetMapping({"/get", "/modify"})
-	public void get(Long bno, @ModelAttribute("cri")Criteria cri, Model model) {
-		
-		log.info("/get");
-		model.addAttribute("vo",service.get(bno));
-		
-	}
-	
 	@GetMapping("/register")
 	public void registerGET() {
 		
@@ -76,25 +67,6 @@ public class MemberController {
 		rttr.addFlashAttribute("result", bno);
 		
 		return "redirect:/member/list";
-		
-	}
-	
-	@PostMapping("/modify")
-	public String modify(MemberVO vo, Criteria cri, RedirectAttributes rttr) {
-		
-		int result = service.modify(vo);
-		
-		if (result == 1) {
-			rttr.addFlashAttribute("result", vo.getMEMBER_SQ());
-			rttr.addFlashAttribute("modType", "m");
-		}
-		
-		rttr.addAttribute("pageNum",cri.getPageNum());
-		rttr.addAttribute("amount",cri.getAmount());
-		rttr.addAttribute("type",cri.getType());
-		rttr.addAttribute("keyword",cri.getKeyword());
-		
-		return "redirect:/Member/list";
 		
 	}
 	
@@ -275,23 +247,12 @@ public class MemberController {
 	@PostMapping("/change_pw_ok")
 	@ResponseBody
 	public int changePW(MemberVO vo, Model model) {
-//		log.info("========");
+//		log.info("iliiilll");
 //		log.info(vo);
 		int result = service.changePW(vo);
 //		log.info("=======");
 //		log.info(result);
 		return result;
-	}
-	
-	@GetMapping("/secession")
-	public String secession(HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		
-		//로그아웃상태라면 로그인페이지로 이동
-		if(session.getAttribute("loginInfo") == null) {
-			return "redirect:login";
-		}
-		return null;
 	}
 	
 	

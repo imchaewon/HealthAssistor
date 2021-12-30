@@ -16,6 +16,9 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 
+	<div style="height:100px">
+	</div>
+
 </body>
 
 </html>

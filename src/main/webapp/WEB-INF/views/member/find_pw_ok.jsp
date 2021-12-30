@@ -80,15 +80,15 @@ function submitChk(){
 		return;
 	}
 	
-	f.setAttribute("method","post")
-	f.setAttribute("action","/member/change_pw_ok")
+	//f.setAttribute("method","post")
+	//f.setAttribute("action","/member/change_pw_ok")
 	//f.submit();
 	
 	$.ajax({
 		type:"POST",
 		url:"/member/change_pw_ok",
 		data:$(f).serialize(),
-		async:true,
+		async:false,
 		success:function(result){
 			//console.log(result);
 			if(result){

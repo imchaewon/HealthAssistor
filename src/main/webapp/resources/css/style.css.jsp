@@ -70,6 +70,16 @@ li,a{color:#333;}
 .cbrdS1 label input[type=radio]:checked + span{background-position:0 0;}
 .cbrdS1 label input[type=radio]:disabled+ span{opacity:.5;}
 
+label.switch{position:relative;display:inline-block;vertical-align:middle;width:56px;height:28px;padding:0;}
+label.switch input{display:none;}
+label.switch input + :after{content:"Off";font-size:14px;color:#fff;font-weight:bold;width:56px;text-align:right;display:inline-block;padding:0 8px;box-sizing:border-box;line-height:28px;vertical-align:top;}
+label.switch input + div.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#ccc;-webkit-transition:.4s;transition:.4s;border-radius:5px;}
+label.switch input + div.slider:before{position:absolute;content:"";height:16px;width:16px;left:6px;top:6px;background-color:white;-webkit-transition:.4s;transition:.4s;border-radius:5px;}
+label.switch input:checked + .slider{background-color:#2196F3;}
+label.switch input:checked + :after{content:"On";font-size:14px;color:#fff;font-weight:bold;line-height:28px;text-align:left;}
+label.switch input:focus + .slider{box-shadow:0 0 1px #2196F3;}
+label.switch input:checked + .slider:before{-webkit-transform:translateX(31px);-ms-transform:translateX(31px);transform:translateX(27px);background:deepskyblue;}
+
 .mgt0{margin-top:0 !important;}
 .mgt5{margin-top:5px !important;}
 .mgt10{margin-top:10px !important;}
@@ -267,7 +277,7 @@ textarea.textarea{width:100%; padding:5px 10px; margin:0; border:none; font-size
 .textarea_option textarea{width:100%; max-width:100%; height:35px; min-height:35px; padding:0 10px; border:1px solid #c4c4c4; font-size:15px; line-height:33px; box-sizing:border-box;}
 
 
-.sub_content{width:1200px;margin:auto;}
+.sub_content{width:1200px;margin:auto;overflow:hidden;}
 
 .leftMenu{float:left;width:16%;margin-top:50px;position:relative;}
 .leftMenu:before{content:"";position:absolute;right:40px;top:0;bottom:0;border-right:1px solid #ddd;}
@@ -316,7 +326,7 @@ textarea.textarea{width:100%; padding:5px 10px; margin:0; border:none; font-size
 .tlS2.hoverstyle td,
 .tlS2.hoverstyle th{background:none;}
 
-.tipBox{background:#F5F5F5;line-height:30px;position:relative;padding:10px 15px;box-sizing:border-box;margin-top:35px;border:1px solid #E5E6E8;}
+.tipBox{background:#F5F5F5;line-height:24px;position:relative;padding:10px 15px;box-sizing:border-box;margin-top:35px;border:1px solid #E5E6E8;}
 .tipBox.type2{padding:0;}
 .tipBox:before{content:"";display:inline-block;border-bottom:8px solid rgba(0,0,0,0);border-left:8px solid #FF8B33;background:none;vertical-align:middle;position:absolute;top:-8px;left:20px;}
 .tipBox:after{content:"tip";display:inline-block;line-height:17px;height:19px;padding:0 8px;border-radius:3px;background:#FF8B33;color:#fff;position:absolute;left:0;top:-24px;font-size:12px;}

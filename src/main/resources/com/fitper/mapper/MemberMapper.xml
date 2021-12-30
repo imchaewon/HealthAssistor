@@ -23,14 +23,16 @@
 	</select>
 	
 	<insert id="insert">
-		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH,GNDR, AMR) values(MEMBER_SQ.nextVal, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
+		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH, GNDR, AMR)
+		values(MEMBER_SQ.nextVal, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
 	</insert>
 	
 	<insert id="insertSelectKey">
 		<selectKey order="BEFORE" keyProperty="MEMBER_SQ" resultType="long">
 			select MEMBER_SQ.nextVal from dual
 		</selectKey>
-		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH,GNDR, AMR) values(#{MEMBER_SQ}, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
+		insert into MEMBER_TL(MEMBER_SQ, ID, PW, PW_QUESTION_SQ, PW_FIND_A, BIRTH, GNDR, AMR)
+		values(#{MEMBER_SQ}, #{ID}, #{PW}, #{PW_QUESTION_SQ}, #{PW_FIND_A}, #{BIRTH}, #{GNDR}, #{AMR})
 	</insert>
 	
 	<select id="read" resultType="com.fitper.domain.MemberVO">
@@ -99,29 +101,39 @@
 		MEMBER_SQ > 0
 	</select>
 	
-	
-	<select id="searchTest" resultType="com.fitper.domain.MemberVO">
-		select * from MEMBER_TL where
-		
-		<trim suffix="and">
-		<foreach collection="map" index="key" item="val" separator="or" open="(" close=")">
-			<if test="key == 'T'.toString()">
-				title like #{val}
-			</if>
-			<if test="key == 'C'.toString()">
-				content like #{val}
-			</if>
-			<if test="key == 'W'.toString()">
-				writer like #{val}
-			</if>
-		</foreach>
-		</trim>
-		
-		<![CDATA[
-		rownum < 10
-		]]>
-	
+	<select id="getMoreInfo" resultType="com.fitper.domain.MemberVO">
+		SELECT I.MEMBER_SQ, WAY, BMR, HGHT, WGHT, GNDR, AMR 
+		FROM MEMBER_TL M
+			LEFT OUTER JOIN MEMBER_MORE_INFO_TL I
+			ON M.MEMBER_SQ = I.MEMBER_SQ
+		WHERE ID=#{ID}
 	</select>
+	
+	<!-- 프로시저 호출 : input / output [msg : cursor] : map 형태로 받음 -->
+	<select id="EDIT_MY_INFO_PROCEDURE" parameterType="map" statementType="CALLABLE">
+		{ CALL EDIT_MEMBER_INFO (
+			#{ID},
+			#{GNDR},
+			#{AMR},
+			#{WAY},
+			#{BMR},
+			#{HGHT},
+			#{WGHT},
+			
+			#{RESULT, mode=OUT, jdbcType=VARCHAR, javaType=String}
+		)}
+	</select>
+
+	<!-- 프로시저 호출 : input / output [msg : cursor] : map 형태로 받음 -->
+	<select id="DEL_MEMBER_INFO_PROCEDURE" parameterType="map" statementType="CALLABLE">
+		{ CALL DEL_MEMBER_INFO (
+			#{ID},
+			
+			#{RESULT, mode=OUT, jdbcType=VARCHAR, javaType=String}
+		)}
+	</select>
+
+
 	
 </mapper>
 

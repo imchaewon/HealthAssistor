@@ -42,10 +42,21 @@ function chkEng_N_Num(e){
 	}
 }
 
-//[숫자]이외 거르기(제이쿼리)
-$("input:text[numberOnly]").on("keyup", function() {
-	$(this).val($(this).val().replace(/[^0-9]/gi,"") );
-});
+//[숫자]이외 거르기
+function chkNumber(e){
+	var el = e.target;
+	var regExpId = /^[0-9]*$/;
+	
+	if(!regExpId.test(el.value)){
+		var str = "";
+		for (var item of el.value.split("")) {
+			if(regExpId.test(item)){
+				str += item;
+			}
+		}
+		el.value = str;
+	}
+}
 
 // 공백 확인
 function chkEmpty(data){
