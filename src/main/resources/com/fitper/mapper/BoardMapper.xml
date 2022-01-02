@@ -8,83 +8,109 @@
 		<trim prefix="(" suffix=") and">
 		<foreach collection="typeArr" item="type" separator="or">
 			<if test="type == 'T'.toString()">
-				title like '%'||#{keyword}||'%'
+				TIT like '%'||#{keyword}||'%'
 			</if>
 			<if test="type == 'C'.toString()">
-				content like '%'||#{keyword}||'%'
+				CON like '%'||#{keyword}||'%'
 			</if>
 			<if test="type == 'W'.toString()">
-				writer like '%'||#{keyword}||'%'
+				MEMBER_SQ = (SELECT MEMBER_SQ FROM MEMBER_TL WHERE ID like '%'||#{keyword}||'%')
 			</if>
 		</foreach>
 		</trim>
 	</sql>
 
 	<select id="getList" resultType="com.fitper.domain.BoardVO">
-		select * from tblBoard order by bno desc
+		select * from POST_TL order by POST_SQ desc
 	</select>
 	
 	<insert id="insert">
-		insert into tblBoard(bno,title,content,writer) values(seq_board.nextVal,#{title},#{content},#{writer})
+		insert into POST_TL(POST_SQ,TIT,CON,MEMBER_SQ) values(seq_board.nextVal,#{TIT},#{CON},#{MEMBER_SQ})
 	</insert>
 	
 	<insert id="insertSelectKey">
-		<selectKey order="BEFORE" keyProperty="bno" resultType="long">
-			select seq_board.nextVal from dual
+		<selectKey order="BEFORE" keyProperty="POST_SQ" resultType="long">
+			select POST_SQ.nextVal from dual
 		</selectKey>
-		insert into tblBoard(bno,title,content,writer) values(#{bno},#{title},#{content},#{writer})
+		insert into POST_TL(POST_SQ,TIT,CON,MEMBER_SQ) 
+		values(
+			POST_SQ.NEXTVAL,
+			#{TIT},
+			#{CON},
+			#{MEMBER_SQ}
+		)
 	</insert>
 	
 	<select id="read" resultType="com.fitper.domain.BoardVO">
-		select * from tblBoard where bno = #{bno}
+		select
+			POST_SQ,
+			(SELECT ID FROM MEMBER_TL M WHERE M.MEMBER_SQ = P.MEMBER_SQ) AS WRITER,
+			TIT,
+			CON,
+			WRT_DATE,
+			EDIT_DATE,
+			V_CNT AS VIEW_CNT
+		from POST_TL P
+		where POST_SQ = #{POST_SQ}
 	</select>
 	
+	<update id="viewCntUp">
+		UPDATE POST_TL SET V_CNT = (SELECT V_CNT FROM POST_TL WHERE POST_SQ = #{POST_SQ}) + 1 WHERE POST_SQ = #{POST_SQ}
+	</update>
+	
 	<delete id="delete">
-		delete from tblBoard where bno = #{bno}
+		delete from POST_TL where POST_SQ = #{POST_SQ}
 	</delete>
 	
 	<update id="update">
-		update tblBoard set title = #{title},
-		content = #{content},
-		writer = #{writer},
-		updatedate = sysdate
-		where bno = #{bno}
+		update POST_TL set TIT = #{TIT},
+		CON = #{CON},
+		MEMBER_SQ = #{MEMBER_SQ},
+		EDIT_DATE = sysdate
+		where POST_SQ = #{POST_SQ}
 	</update>
 	
 	<select id="getListWithPaging" resultType="com.fitper.domain.BoardVO">
 	select * from
 	(
-		select /*+ INDEX_DESC(tblBoard pk_board) */ rownum rn,bno,title,writer,regdate,updatedate 
-		from tblBoard 
+		select /*+ INDEX_DESC(P PK_POST_TL) */ rownum rn,
+			POST_SQ,
+			TIT,
+			CON,
+			(SELECT ID FROM MEMBER_TL M WHERE M.MEMBER_SQ = P.MEMBER_SQ) AS WRITER,
+			WRT_DATE,
+			EDIT_DATE,
+			V_CNT AS VIEW_CNT,
+			(SELECT COUNT(*) FROM COMMENT_TL C WHERE C.POST_SQ = P.POST_SQ) AS COMMENT_CNT
+		from POST_TL P
 		where
 	<include refid="criteria"></include>
 	<![CDATA[
-		bno > 0 and rownum > 0 and rownum <= #{pageNum} * #{amount}
+		POST_SQ > 0 and rownum > 0 and rownum <= #{pageNum} * #{amount}
 	) 
 	where rn > (#{pageNum} - 1) * #{amount}
 	]]>
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		select count(bno) from tblBoard where
+		select count(POST_SQ) from POST_TL where
 		<include refid="criteria"></include>
-		bno>0
+		POST_SQ>0
 	</select>
 	
-	
 	<select id="searchTest" resultType="com.fitper.domain.BoardVO">
-		select * from tblBoard where
+		select * from POST_TL where
 		
 		<trim suffix="and">
 		<foreach collection="map" index="key" item="val" separator="or" open="(" close=")">
 			<if test="key == 'T'.toString()">
-				title like #{val}
+				TIT like #{val}
 			</if>
 			<if test="key == 'C'.toString()">
-				content like #{val}
+				CON like #{val}
 			</if>
 			<if test="key == 'W'.toString()">
-				writer like #{val}
+				MEMBER_SQ like #{val}
 			</if>
 		</foreach>
 		</trim>
@@ -92,11 +118,26 @@
 		<![CDATA[
 		rownum < 10
 		]]>
-	
 	</select>
 	
+	<select id="comment_get" resultType="com.fitper.domain.BoardVO">
+		select /*+ INDEX(COMMENT_TL PK_COMMENT_TL) */ rownum rn,
+			COMMENT_SQ AS CMT_SQ,
+			POST_SQ,
+			(SELECT ID FROM MEMBER_TL M WHERE M.MEMBER_SQ = C.MEMBER_SQ) AS WRITER,
+			CON,
+			WRT_DATE
+		from COMMENT_TL C
+		where POST_SQ = #{POST_SQ}
+	</select>
+	
+	<insert id="comment_write">
+		INSERT INTO COMMENT_TL(COMMENT_SQ, POST_SQ, MEMBER_SQ, CON)
+		VALUES(COMMENT_SQ.NEXTVAL, #{POST_SQ}, #{MEMBER_SQ}, #{CON})
+	</insert>
+	
+	
 </mapper>
-
 
 
 

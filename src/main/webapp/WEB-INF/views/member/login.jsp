@@ -116,7 +116,7 @@ function loginChk() {
 			}else if(data == "idfail"){
 				$('#loginCheck').html("등록된 정보가 없습니다.");
 			}else{ // 로그인 성공
-				if(window.location.pathname != "/member/login"){ // 로그인이필요한 페이지를 들어가서 튕겨온경우
+				if(window.location.pathname != "/member/login"){ // 로그인이필요한 페이지를 들어가서 컨트롤러가 튕겨낸경우
 					window.location.replace(window.location.href); // 이전페이지로 이동
 				}else{ // 로그인이 필요없는 페이지 또는 메인에서 온경우
 					window.location.replace(document.referrer); // 이전페이지(현재페이지에 저장된 url)로 이동

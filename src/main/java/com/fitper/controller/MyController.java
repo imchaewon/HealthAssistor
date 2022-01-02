@@ -28,11 +28,11 @@ public class MyController {
 	
 	private final MemberService service;
 
-	@GetMapping("/main")
+	@GetMapping()
 	public String main(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		
-		//로그아웃상태라면 로그인페이지로 이동
+		// 로그아웃상태라면 로그인페이지로 이동
 		if(session.getAttribute("loginInfo") == null) {
 			return "/member/login";
 		}
@@ -43,7 +43,7 @@ public class MyController {
 		
 		model.addAttribute("myInfo", mem);
 		
-		return null;
+		return "/my/main";
 	}
 	
 	@PostMapping("/main")
@@ -163,6 +163,16 @@ public class MyController {
 		}
 		
 		return result;
+	}
+	
+	@GetMapping("/daily_info")
+	public void daily_info() {
+		
+	}
+	
+	@GetMapping("/statistics")
+	public void statistics() {
+		
 	}
 	
 	

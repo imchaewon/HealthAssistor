@@ -18,13 +18,19 @@ public interface BoardMapper {
 	
 	int update(BoardVO vo);
 	
-	int delete(Long bno);
+	int delete(Long POST_SQ);
 	
 	List<BoardVO> getListWithPaging(Criteria cri);
 	
 	int getTotalCount(Criteria cri);
 	
 	List<BoardVO> searchTest(Map<String, Map<String,String>> map);
+
+	void viewCntUp(Long POST_SQ);
+
+	List<BoardVO> comment_get(Long POST_SQ);
+	
+	int comment_write(Map<String,String> cmtMAP);
 	
 }
 

@@ -115,11 +115,10 @@ public class MemberController {
 		Long seq = service.registerKey(vo);
 		vo.setMEMBER_SQ(seq);
 		
-		// 로그인 성공시
+		// 회원가입한 정보로 로그인
 		if(seq > 0) {
 			rttr.addFlashAttribute("join_result", 1);
 			session.setAttribute("loginInfo", vo);
-			return "redirect:/";
 		}
 		rttr.addFlashAttribute("join_result", 0);
 		return "redirect:/member/join";
@@ -160,6 +159,8 @@ public class MemberController {
 			
 			// 세션에 회원정보 저장
 			session.setAttribute("loginInfo", mem);
+//			log.info("illlili");
+//			log.info(session.getAttribute("loginInfo"));
 			
 			// 자동로그인 체크시 처리
 			if(vo.isAutoLogin()) {
@@ -191,7 +192,8 @@ public class MemberController {
 		cookic.setMaxAge(0); // 유효시간을 0으로 설정
 		resp.addCookie(cookic); // 응답 헤더에 추가해서 없어지도록 함
 		
-		return "redirect:/";
+		String referer = req.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
 	}
 
 	@GetMapping("find_id")
@@ -209,9 +211,8 @@ public class MemberController {
 	@PostMapping("/find_id")
 	@ResponseBody
 	public List<Map<String,String>> findID_ok(@RequestBody String BIRTH) {
-//		log.info("=========");
+//		log.info("liliiil");
 //		log.info(BIRTH);
-		BIRTH = BIRTH.replace("=","");
 		
 		List<Map<String,String>> listID = service.findID(BIRTH);
 		

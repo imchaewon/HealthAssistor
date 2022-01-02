@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.fitper.domain.BoardVO;
 import com.fitper.domain.Criteria;
 import com.fitper.domain.PageDTO;
-import com.fitper.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -30,29 +29,29 @@ public class BoardMapperTests {
 		boardMapper.getList();
 	}
 	
-	@Test
-	public void testInsert(){
-		BoardVO vo = new BoardVO();
-		vo.setTitle("title 테스트99999");
-		vo.setContent("content 테스트");
-		vo.setWriter("writer 테스트");
-
-		log.info("return: " + boardMapper.insert(vo));
-		log.info("--------------------");
-		log.info("after insert" + vo.getBno());
-	}
+//	@Test
+//	public void testInsert(){
+//		BoardVO vo = new BoardVO();
+//		vo.setTitle("title 테스트99999");
+//		vo.setContent("content 테스트");
+//		vo.setWriter("writer 테스트");
+//
+//		log.info("return: " + boardMapper.insert(vo));
+//		log.info("--------------------");
+//		log.info("after insert" + vo.getBno());
+//	}
 	
-	@Test
-	public void testInsertSelectKey() {
-		BoardVO vo = new BoardVO();
-		vo.setTitle("bbbbtitle 테스트");
-		vo.setContent("AAcontent 테스트");
-		vo.setWriter("Awriter 테스트");
-
-		log.info("return: " + boardMapper.insertSelectKey(vo));
-		log.info("--------------------");
-		log.info("after insert selectkey" + vo.getBno());
-	}
+//	@Test
+//	public void testInsertSelectKey() {
+//		BoardVO vo = new BoardVO();
+//		vo.setTitle("bbbbtitle 테스트");
+//		vo.setContent("AAcontent 테스트");
+//		vo.setWriter("Awriter 테스트");
+//
+//		log.info("return: " + boardMapper.insertSelectKey(vo));
+//		log.info("--------------------");
+//		log.info("after insert selectkey" + vo.getBno());
+//	}
 	
 	@Test
 	public void testRead() {
@@ -68,16 +67,16 @@ public class BoardMapperTests {
 		log.info("count : " + count);
 	}
 	
-	@Test
-	public void testUpdate() {
-		BoardVO vo = new BoardVO();
-		vo.setBno(2L);
-		vo.setTitle("Updated Title");
-		vo.setContent("Updated Content");
-		vo.setWriter("user00");
-		
-		log.info("count : " + boardMapper.update(vo));
-	}
+//	@Test
+//	public void testUpdate() {
+//		BoardVO vo = new BoardVO();
+//		vo.setBno(2L);
+//		vo.setTitle("Updated Title");
+//		vo.setContent("Updated Content");
+//		vo.setWriter("user00");
+//		
+//		log.info("count : " + boardMapper.update(vo));
+//	}
 	
 	@Test
 	public void testPaging() {

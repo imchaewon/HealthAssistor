@@ -150,10 +150,9 @@
 			$.ajax({
 				type:"POST", //필수:: 요청 메소드(GET or Post → 판단기준 : 데이터가 큰지 / 작은지)
 				url:"/member/find_id", //필수:: 응답 프로그램 주소(acrion)
-				data: birth,
+				data: JSON.stringify({"BIRTH":birth}),
 				//dataType:"text", //선택:: 돌려받을 데이터의 형식
 				async:true, //선택:: true(비동기) or false(동기) (기본값:true)
-				
 				success:function(data){ //선택:: 돌려받는 데이터가 있을때만 구현
 					//console.log(data);
 					if(data != 0){

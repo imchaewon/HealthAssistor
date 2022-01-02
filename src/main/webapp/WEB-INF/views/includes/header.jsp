@@ -80,9 +80,9 @@
 		<c:if test="${loginInfo != null}">
 		<ul id="login">
 			<li>Hi, ${loginInfo.ID}님</li>
-			<li class="my"><a href="/my/main">마이페이지</a>
+			<li class="my"><a href="/my">마이페이지</a>
 				<ul>
-					<li><a href="/my/main">내 정보 관리</a></li>
+					<li><a href="/my">내 정보 관리</a></li>
 					<li><a href="/my/post">내 게시글</a></li>
 					<li><a href="/my/comment">내 댓글</a></li>
 					<li><a href="/my/message">받은 쪽지</a></li>
@@ -98,12 +98,12 @@
 <div class="gnbWrap">
 	<div class="gnbBox">
 		<ul>
-			<li><a href="/my/message">내 일일 영양소 & 운동 루틴</a></li>
-			<li><a href="javascript:">운동 추천 & 등록</a></li>
-			<li><a href="javascript:">내 그래프</a></li>
-			<li><a href="javascript:">Health Place</a></li>
-			<li><a href="javascript:">커뮤니티</a></li>
-			<li><a href="javascript:">내 체형 알아보기</a></li>
+			<li><a href="/my/daily_info">내 일일 영양소 & 운동 루틴</a></li>
+			<li><a href="/exercise/">운동 추천 & 등록</a></li>
+			<li><a href="/my/statistics">내 그래프</a></li>
+			<li><a href="/place">Health Place</a></li>
+			<li><a href="/community">커뮤니티</a></li>
+			<li><a href="/body_type">내 체형 알아보기</a></li>
 		</ul>
 	</div>
 </div>

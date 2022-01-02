@@ -6,7 +6,7 @@
 
 <div class="leftMenu">
 	<ul>
-		<li><a href="/my/main">내 정보 관리</a></li>
+		<li><a href="/my">내 정보 관리</a></li>
 		<li><a href="/my/post">내 게시글</a></li>
 		<li><a href="/my/comment">내 댓글</a></li>
 		<li><a href="/my/message">받은 쪽지</a></li>
