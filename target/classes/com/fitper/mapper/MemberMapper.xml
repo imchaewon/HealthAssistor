@@ -56,7 +56,11 @@
 	</update>
 	
 	<select id="login" resultType="com.fitper.domain.MemberVO">
-		select * from MEMBER_TL where ID = #{ID} and PW = #{PW}
+		select * from MEMBER_TL M
+		LEFT OUTER JOIN
+		MEMBER_MORE_INFO_TL I
+		ON M.MEMBER_SQ = I.MEMBER_SQ
+		where ID = #{ID} and PW = #{PW}
 	</select>
 	
 	<select id="login_pw_fail" resultType="int">
@@ -110,7 +114,7 @@
 	</select>
 	
 	<!-- 프로시저 호출 : input / output [msg : cursor] : map 형태로 받음 -->
-	<select id="EDIT_MY_INFO_PROCEDURE" parameterType="map" statementType="CALLABLE">
+	<select id="EDIT_MEMBER_INFO_PROCEDURE" parameterType="map" statementType="CALLABLE">
 		{ CALL EDIT_MEMBER_INFO (
 			#{ID},
 			#{GNDR},
@@ -132,7 +136,69 @@
 			#{RESULT, mode=OUT, jdbcType=VARCHAR, javaType=String}
 		)}
 	</select>
+	
+	<select id="getExrPartList" resultType="map">
+		SELECT
+			CODE,
+			NAME
+		FROM EXR_PART_TL
+	</select>
 
+	<select id="getExrList" resultType="com.fitper.domain.ExrVO">
+		SELECT
+			E.EXERCISE_SQ,
+			KIND,
+			E.NAME,
+			EXP,
+			P.CODE AS PART
+		FROM EXERCISE_TL E
+		INNER JOIN
+		EXR_N_EXR_PART_TL N
+		ON E.EXERCISE_SQ = N.EXERCISE_SQ
+		INNER JOIN
+		EXR_PART_TL P
+		ON N.EXR_PART_SQ = P.EXR_PART_SQ
+	</select>
+	
+	<resultMap id="calResult" type="com.fitper.domain.CalendarVO">
+		<result column="start1" property="start"/>
+		<result column="end1" property="end"/>
+	</resultMap>
+	<select id="getCalendarList" resultMap="calResult">
+		SELECT
+			id,
+			title,
+			TO_char(start1, 'YYYY-MM-DD"T"HH24:MI:SS') AS start1,
+			TO_char(end1, 'YYYY-MM-DD"T"HH24:MI:SS') AS end1,
+			ALLDAY,
+			TEXTCOLOR,
+			BACKGROUNDCOLOR,
+			BORDERCOLOR
+		FROM F_CALENDAR_TL
+		WHERE MEMBER_SQ = #{MEMBER_SQ}
+	</select>
+	
+	<delete id="clearCalendarList">
+		DELETE FROM F_CALENDAR_TL WHERE MEMBER_SQ = #{MEMBER_SQ}
+	</delete>
+	
+	<update id="setCalendarList" parameterType="java.util.List">
+		INSERT INTO F_CALENDAR_TL(id, MEMBER_SQ, title, start1, end1, allDay, textColor, backgroundColor, borderColor) 
+		SELECT F_CALENDAR_SQ.NEXTVAL, A.* FROM(
+			<foreach collection="list" item="item" index="index" separator="UNION ALL ">
+			SELECT
+				#{item.MEMBER_SQ} AS MEMBER_SQ,
+				#{item.title} AS title,
+				to_date(#{item.start},'YYYY/MM/DD"T"hh24:mi:ss') AS start1, 
+				to_date(#{item.end},'YYYY/MM/DD"T"hh24:mi:ss') AS end1,
+				#{item.allDay} AS allDay,
+				'orange' AS textColor,
+				'darkblue' AS backgroundColor,
+				'hotpink' AS borderColor
+			FROM DUAL
+			</foreach>
+		) A
+	</update>
 
 	
 </mapper>

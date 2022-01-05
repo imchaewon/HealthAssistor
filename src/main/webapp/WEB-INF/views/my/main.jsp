@@ -38,7 +38,7 @@
 			</td>
 			<th width="20%" align="center">비밀번호</th>
 			<td width="30%">
-				<input type="password" name="PW" class="box" value="" style="width:80px;" maxlength="12">
+				<input type="password" name="PW" class="box" value="" style="width:80px;" maxlength="12" onkeyup="if(event.keyCode == 13) submitChk()">
 			</td>
 		</tr>
 		<tr>
@@ -93,13 +93,13 @@
 		<tr class="use_hnw">
 			<th align="center">※ 신장</th>
 			<td colspan="3">
-				<input type="text" name="HGHT" id="HGHT" class="box" value="${myInfo.HGHT}" size="4" maxlength="3" onkeyup="chkNumber(event)">cm
+				<input type="text" name="HGHT" id="HGHT" class="box" value="${myInfo.HGHT}" size="4" maxlength="6" onkeyup="chkNumberDot(event)">cm
 			</td>
 		</tr>
 		<tr class="use_hnw">
 			<th align="center">※ 체중</th>
 			<td colspan="3">
-				<input type="text" name="WGHT" id="WGHT" class="box" value="${myInfo.WGHT}" size="4" maxlength="3" onkeyup="chkNumber(event)">kg
+				<input type="text" name="WGHT" id="WGHT" class="box" value="${myInfo.WGHT}" size="4" maxlength="6" onkeyup="chkNumberDot(event)">kg
 			</td>
 		</tr>
 
@@ -190,6 +190,9 @@ $(document).ready(function(){
 
 function submitChk(){
 	var f = document.Frm;
+	var regex1 = /^([0-9]{1,3})(\.[0-9]{1,2})?$/;
+	var alertTxt = "올바른 값을 입력해주세요.";
+	var pass = 0;
 	
 	if($("#useMore").prop("checked")){ // 칼로리/영양 계산기 이용을 체크했을때
 		if($("input[name='WAY']:checked").val() == "BMR"){
@@ -219,8 +222,18 @@ function submitChk(){
 		f.PW.focus();
 		return;
 	}
+
+	if(!regex1.test(f.HGHT.value)){
+		alert(alertTxt);
+		$("input[name=HGHT]").focus();
+		return;
+	}
+	if(!regex1.test(f.WGHT.value)){
+		alert(alertTxt);
+		$("input[name=WGHT]").focus();
+		return;
+	}
 	
-	var pass = 0;
 	$.ajax({ // 비밀번호 체크
 		type:"POST",
 		url:"/my/main",
@@ -239,9 +252,11 @@ function submitChk(){
 			console.log(a,b,c);
 		}
 	});
+	
 	if(!pass){
 		return;
 	}
+	
 	$.ajax({ // 정보 수정
 		type:"POST",
 		url:"/my/main_ok",

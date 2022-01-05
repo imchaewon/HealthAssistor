@@ -14,7 +14,10 @@
 
 	<ul class="login_input">
 		<li><input type="text" id="ID" name="ID" value="" placeholder="아이디"></li>
-		<li><input type="password" id="PW" name="PW" placeholder="비밀번호"></li>
+		<li>
+			<input type="password" id="PW" name="PW" placeholder="비밀번호" onkeypress="checkCapsLock(event)">
+			<p id="msg_CapsLock"></p>
+		</li>
 		<li><span id="loginCheck" style="color:red; font-size: 17px;"></span></li>
 	</ul>
 	<a href="javascript:loginChk();" class="btn01"><span>로그인</span></a>

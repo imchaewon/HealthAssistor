@@ -8,7 +8,7 @@
 
 <div class="community">
 
-	<h1 class="tit">커뮤니티</h1>
+	<h1 class="titleS3">커뮤니티</h1>
 	
 	<div class="panel panel-default">
 		<div class="panel-heading">

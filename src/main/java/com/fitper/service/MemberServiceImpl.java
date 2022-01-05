@@ -5,8 +5,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.fitper.domain.CalendarVO;
 import com.fitper.domain.Criteria;
+import com.fitper.domain.ExrVO;
 import com.fitper.domain.MemberVO;
 import com.fitper.mapper.MemberMapper;
 
@@ -118,6 +121,35 @@ public class MemberServiceImpl implements MemberService{
 //		log.info(map);
 		mapper.DEL_MEMBER_INFO_PROCEDURE(map);
 	}
+	
+	@Override
+	public List<Map<String,String>> getExrPartList() {
+		return mapper.getExrPartList();
+	}
+
+	@Override
+	public List<ExrVO> getExrList() {
+		return mapper.getExrList();
+	}
+	
+	@Override
+	public List<CalendarVO> getCalendarList(Long MEMBER_SQ) {
+		return mapper.getCalendarList(MEMBER_SQ);
+	}
+	
+	@Override
+	@Transactional
+	public int setCalendarList(List<CalendarVO> list) {
+		mapper.clearCalendarList(list.get(0).getMEMBER_SQ());
+		return mapper.setCalendarList(list);
+	}
+	
+	@Override
+	public int clearCalendarList(Long MEMBER_SQ) {
+		return mapper.clearCalendarList(MEMBER_SQ);
+	}
+	
+	
 	
 	
 

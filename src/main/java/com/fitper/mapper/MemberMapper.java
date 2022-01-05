@@ -3,7 +3,9 @@ package com.fitper.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.fitper.domain.CalendarVO;
 import com.fitper.domain.Criteria;
+import com.fitper.domain.ExrVO;
 import com.fitper.domain.MemberVO;
 
 public interface MemberMapper {
@@ -43,6 +45,16 @@ public interface MemberMapper {
 	void EDIT_MEMBER_INFO_PROCEDURE(Map<String,Object> map);
 	
 	void DEL_MEMBER_INFO_PROCEDURE(Map<String, String> map);
+	
+	List<Map<String,String>> getExrPartList();
+	
+	List<ExrVO> getExrList();
+	
+	List<CalendarVO> getCalendarList(Long MEMBER_SQ);
+	
+	int setCalendarList(List<CalendarVO> list);
+	
+	int clearCalendarList(Long MEMBER_SQ);
 	
 }
 
