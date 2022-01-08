@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fitper.domain.CalendarVO;
 import com.fitper.domain.ExrVO;
 import com.fitper.domain.MemberVO;
+import com.fitper.service.ExerciseService;
 import com.fitper.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class MyController {
 	
-	private final MemberService service;
+	private final MemberService serviceM;
+	private final ExerciseService serviceE;
 	
 	@GetMapping()
 	public String main(HttpServletRequest req, Model model) {
@@ -43,7 +45,7 @@ public class MyController {
 		
 		String id = ((MemberVO) session.getAttribute("loginInfo")).getID();
 		
-		MemberVO mem = service.getMoreInfo(id);
+		MemberVO mem = serviceM.getMoreInfo(id);
 		
 		model.addAttribute("myInfo", mem);
 		
@@ -83,7 +85,7 @@ public class MyController {
 		map.put("WGHT",vo.getWGHT());
 		
 		// 추가정보 추가 또는 모든정보 수정
-		service.updateInfo(map);
+		serviceM.updateInfo(map);
 		
 		if(map.get("RESULT").equals("success")) {
 			
@@ -169,7 +171,7 @@ public class MyController {
 		
 		map.put("ID",((MemberVO) session.getAttribute("loginInfo")).getID());
 		
-		service.deleteInfo(map);
+		serviceM.deleteInfo(map);
 		
 		String result = map.get("RESULT");
 		
@@ -191,20 +193,21 @@ public class MyController {
 			return "/member/login";
 		}
 		
-		List<Map<String, String>> partList = service.getExrPartList();
-		List<ExrVO> exrList = service.getExrList();
+		List<Map<String,String>> partList = serviceE.getPartList();
+		List<ExrVO> exrList = serviceE.getList();
 
 		Map<String,List<ExrVO>> map = new HashMap<String,List<ExrVO>>(); // 부위별 운동
-		for(Map<String, String> part:partList){
-			List<ExrVO> list = new ArrayList<ExrVO>();
+		
+		for(Map<String,String> part:partList){
+			List<ExrVO> elist = new ArrayList<ExrVO>();
 			for(ExrVO exr:exrList){
-				if (part.get("CODE").equals(exr.getPART())) { 
-					list.add(exr);
+				if (part.get("CODE").equals(exr.getCODE())) { 
+					elist.add(exr);
 				}
 			}
-			map.put(part.get("CODE"), list);
+			map.put(part.get("CODE"), elist); // 부위에서 code를 꺼내서 <String,운동객체> 형태로 map에 저장
 		}
-		log.info(map);
+		//log.info(map);
 		
 		
 		model.addAttribute("part",partList);
@@ -218,7 +221,7 @@ public class MyController {
 	public List<CalendarVO> data(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Long seq = ((MemberVO)session.getAttribute("loginInfo")).getMEMBER_SQ();
-		return service.getCalendarList(seq);
+		return serviceM.getCalendarList(seq);
 	}
 	
 	@PostMapping(value="daily_info", params="method=save")
@@ -232,9 +235,9 @@ public class MyController {
 		Long seq = ((MemberVO)session.getAttribute("loginInfo")).getMEMBER_SQ();
 		
 		if(list.getList() == null) { // 캘린더에 어떤 데이터도 없을경우
-			return service.clearCalendarList(seq);
+			return serviceM.clearCalendarList(seq);
 		}else {
-			return service.setCalendarList(list.getList());
+			return serviceM.setCalendarList(list.getList());
 		}
 	}
 	

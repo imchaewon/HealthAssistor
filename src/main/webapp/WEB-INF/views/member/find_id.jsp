@@ -153,6 +153,7 @@
 				data: JSON.stringify({"BIRTH":birth}),
 				//dataType:"text", //선택:: 돌려받을 데이터의 형식
 				async:true, //선택:: true(비동기) or false(동기) (기본값:true)
+				contentType: "application/json; charset-utf-8",
 				success:function(data){ //선택:: 돌려받는 데이터가 있을때만 구현
 					//console.log(data);
 					if(data != 0){

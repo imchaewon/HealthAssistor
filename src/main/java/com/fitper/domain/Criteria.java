@@ -13,6 +13,7 @@ public class Criteria {
 	private int amount;
 
 	private String type;
+	private String type2;
 	private String keyword;
 
 	public Criteria() {

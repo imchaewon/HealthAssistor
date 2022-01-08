@@ -7,10 +7,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+<script src="/resources/js/layer.js"></script>
 
 
 <style>
-
+	.fc-h-event{background:<%=cstColor3%>;border-color:<%=cstColor1%>;}
 </style>
 
 <form name="Frm">
@@ -51,20 +52,36 @@
 		
 			<!-- 캘린더 -->
 			
-			<p class="titTxt">※ 개별삭제시 일정을 클릭해주세요.</p>
+			<p class="titTxt">
+				※ 개별삭제시 일정을 클릭해주세요.<br>
+				※ 모서리를 드래그해 기간을 늘이실 수 있습니다.
+			</p>
 			
 		</div>
 		
 		<div class="btnWrap al-c">
+			<a href="javascript:" id="reset" class="btn03 bg_gray">원래대로</a>
+			<a href="javascript:" id="clear" class="btn03 bg_gray">모두 제거</a>
 			<a href="javascript:" id="save" class="btn03">저장</a>
-			<a href="javascript:" id="reset" class="btn03 bg_gray">초기화</a>
-			<a href="javascript:" id="clear" class="btn03 bg_gray">일정 모두 제거</a>
 		</div>
 		
 	</div>
 	
 	
 
+</div>
+
+
+<div class="layerFix" layerIdx=1>
+	<div class="layerBg" onclick="closeLayer()"></div>
+	<div class="layerCon">
+		<a href="javascript:closeLayer()" class="btn closeLayerFix"></a>
+
+		<div>
+			일정 확인, 수정, 삭제 구현
+		</div>
+
+	</div>
 </div>
 
 
@@ -134,7 +151,17 @@ document.addEventListener('DOMContentLoaded', function() {
 		titleFormat : function(date) { // title 설정
 			return date.date.year +"년 "+(date.date.month +1)+"월"; 
 		},
-		
+		dayHeaderContent: function(date){
+		  let weekList = ["일", "월", "화", "수", "목", "금", "토"];
+		  return weekList[date.dow];
+		},
+		buttonText: {
+			today: "오늘",
+			month: "월별",
+			week: "주별",
+			day: "일별"
+		},
+
 		navLinks: true, // can click day/week names to navigate views
 		selectable: true,
 		selectMirror: true,
@@ -155,6 +182,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		eventClick: function(arg){ // 있는 일정 클릭시,
 			console.log("#등록된 일정 클릭#");
 			console.log(arg.event);
+			
+			//layerFix("open",1);
+			
 			if (confirm('삭제하시겠습니까?')) {
 				arg.event.remove()
 			}

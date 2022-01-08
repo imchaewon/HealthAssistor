@@ -18,7 +18,6 @@ public class PageDTO {
 		this.cri = cri;
 		
 		this.endPage = (int) Math.ceil(cri.getPageNum() / 10.0) * 10;
-		
 		this.startPage = endPage - 9;
 		
 		this.prev = this.startPage > 1;

@@ -1,16 +1,23 @@
 package com.fitper.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fitper.domain.Criteria;
+import com.fitper.domain.ExrVO;
+import com.fitper.domain.PageDTO;
+import com.fitper.service.ExerciseService;
 import com.fitper.service.PageService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +28,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class PageController {
 	
-	private final PageService service;
+	private final PageService serviceP;
+	private final ExerciseService serviceE;
 	
 	@GetMapping("/place")
 	public String place() {
@@ -30,7 +38,33 @@ public class PageController {
 	}
 	
 	@GetMapping("/exercise")
-	public String exercise() {
+	public String exercise(Criteria cri, Model model) {
+		
+		cri.setAmount(6);
+		
+		List<Map<String, String>> allPartList = serviceE.getPartList(); // 운동 (조건 & 페이징)
+
+		List<ExrVO> exrList = serviceE.getList(cri); // 운동 (조건 & 페이징)
+		List<ExrVO> ENPList = serviceE.getExrNPart(); // 운동 * 부위
+		
+		List<ExrVO> finalExrList = new ArrayList<ExrVO>();
+		for(ExrVO exr:exrList){
+			List<String> partList = new ArrayList<String>();			
+			for(ExrVO enp:ENPList){
+				if (exr.getEXERCISE_SQ().equals(enp.getEXERCISE_SQ())) {
+					partList.add(enp.getNAME());
+				}
+			}
+			exr.setPART_LIST(partList); // 파트속성을 새롭게 추가하고, 루프를 돌며 각각 다른 객체들에 파트속성만 계속 바꿈
+			finalExrList.add(exr); // 바꾼값을 List에 넣음
+		}
+		
+		log.info("finalExrList.....");
+		log.info(finalExrList);
+		
+		model.addAttribute("partList", allPartList);
+		model.addAttribute("list", exrList);
+		model.addAttribute("pageMaker", new PageDTO(cri, serviceE.getCount(cri)));
 		
 		return "/page/exercise";
 	}
@@ -162,7 +196,7 @@ public class PageController {
 			TYPE = "XX";
 		}
 		
-		Map<String, Object> map = service.getBodyType(TYPE);
+		Map<String, Object> map = serviceP.getBodyType(TYPE);
 		
 		map.put("stdWGHT", stdWGHT);
 		map.put("R_BMI", R_BMI);

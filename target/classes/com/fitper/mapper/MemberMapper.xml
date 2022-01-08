@@ -137,29 +137,6 @@
 		)}
 	</select>
 	
-	<select id="getExrPartList" resultType="map">
-		SELECT
-			CODE,
-			NAME
-		FROM EXR_PART_TL
-	</select>
-
-	<select id="getExrList" resultType="com.fitper.domain.ExrVO">
-		SELECT
-			E.EXERCISE_SQ,
-			KIND,
-			E.NAME,
-			EXP,
-			P.CODE AS PART
-		FROM EXERCISE_TL E
-		INNER JOIN
-		EXR_N_EXR_PART_TL N
-		ON E.EXERCISE_SQ = N.EXERCISE_SQ
-		INNER JOIN
-		EXR_PART_TL P
-		ON N.EXR_PART_SQ = P.EXR_PART_SQ
-	</select>
-	
 	<resultMap id="calResult" type="com.fitper.domain.CalendarVO">
 		<result column="start1" property="start"/>
 		<result column="end1" property="end"/>

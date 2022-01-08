@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.fitper.mapper.ExerciseMapper">
+
+	<sql id="criteria">
+		<if test="type != null and type != ''">
+			KIND = #{type} AND <!-- 종류코드가 'type'파라미터의 속성과 일치하는것 -->
+		</if>
+	</sql>
+
+	<select id="getPartList" resultType="map">
+		SELECT
+			CODE,
+			NAME
+		FROM EXR_PART_TL
+	</select>
+
+	<select id="getList" resultType="com.fitper.domain.ExrVO">
+		SELECT
+			E.EXERCISE_SQ,
+			KIND,
+			E.NAME,
+			EXP,
+			P.CODE
+		FROM EXERCISE_TL E
+		INNER JOIN
+		EXR_N_EXR_PART_TL N
+		ON E.EXERCISE_SQ = N.EXERCISE_SQ
+		INNER JOIN
+		EXR_PART_TL P
+		ON N.EXR_PART_SQ = P.EXR_PART_SQ
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.fitper.domain.ExrVO">
+		SELECT * FROM(
+			SELECT /*+ INDEX_DESC(EXERCISE_TL PK_EXERCISE_TL) */
+				rownum rn,
+				EXERCISE_SQ,
+				KIND,
+				NAME,
+				EXP
+			FROM EXERCISE_TL
+			WHERE
+			<include refid="criteria"></include>
+<![CDATA[
+			EXERCISE_SQ > 0 AND ROWNUM > 0 AND ROWNUM <= #{pageNum} * #{amount}
+]]>
+		)
+		WHERE rn > (#{pageNum} - 1) * #{amount}
+	</select>
+	
+	<select id="getExrNPart" resultType="com.fitper.domain.ExrVO">
+		SELECT * FROM(
+			SELECT /*+ INDEX_DESC(EXERCISE_TL PK_EXERCISE_TL) */
+				N.EXERCISE_SQ,
+				N.EXR_PART_SQ,
+				P.CODE,
+				P.NAME
+			FROM EXERCISE_TL E
+			INNER JOIN
+			EXR_N_EXR_PART_TL N
+			ON E.EXERCISE_SQ = N.EXERCISE_SQ
+			INNER JOIN
+			EXR_PART_TL P
+			ON N.EXR_PART_SQ = P.EXR_PART_SQ
+		)
+	</select>
+	
+	<select id="getCount" resultType="int">
+		SELECT COUNT(*) FROM EXERCISE_TL
+		WHERE
+		<include refid="criteria"></include>
+		EXERCISE_SQ>0
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

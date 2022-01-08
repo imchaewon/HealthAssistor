@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.fitper.domain.CalendarVO;
 import com.fitper.domain.Criteria;
-import com.fitper.domain.ExrVO;
 import com.fitper.domain.MemberVO;
 
 public interface MemberService {
@@ -30,9 +29,6 @@ public interface MemberService {
 	void deleteInfo(Map<String, String> map); // 내 정보 추가/수정
 	int remove(Long MEMBER_SQ); // 회원탈퇴
 	int getTotal(Criteria cri); // 등록된 회원수
-	
-	List<Map<String,String>> getExrPartList(); // 운동 종류
-	List<ExrVO> getExrList(); // 운동 리스트
 	
 	List<CalendarVO> getCalendarList(Long MEMBER_SQ); // 캘린더 로드
 	int clearCalendarList(Long MEMBER_SQ); // 캘린더 삭제
