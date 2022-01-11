@@ -88,9 +88,17 @@
 
 <script>
 
+var sw = 0;
+
 $(document).ready(function(){
 	$(".daily_info #external-events > ul > li:nth-of-type(1)").addClass("on")
 	.next().slideDown();
+});
+
+$(window).on("beforeunload", function(){
+	if (sw == 0) {
+		return "나가시겠습니까?"
+	}
 });
 
 $(window).on("scroll",function(){
@@ -266,6 +274,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	$("#save").click(function(){
 		var f = document.Frm;
 		var datas = calendar.getEvents();
+		
+		sw = 1;
 		
 		for (var i = 0; i < datas.length; i++) {
 			

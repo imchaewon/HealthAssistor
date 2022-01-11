@@ -210,7 +210,7 @@ public class MemberController {
 	
 	@PostMapping("/find_id")
 	@ResponseBody
-	public List<Map<String,String>> findID_ok(@RequestBody String BIRTH) {
+	public List<Map<String,String>> findID_ok(String BIRTH) {
 //		log.info("liliiil");
 //		log.info(BIRTH);
 		
