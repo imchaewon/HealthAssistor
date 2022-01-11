@@ -193,10 +193,10 @@ public class MyController {
 			return "/member/login";
 		}
 		
-		List<Map<String,String>> partList = serviceE.getPartList();
-		List<ExrVO> exrList = serviceE.getList();
+		List<Map<String,String>> partList = serviceE.getPartList(); // 운동부위
+		List<ExrVO> exrList = serviceE.getList(); // 운동
 
-		Map<String,List<ExrVO>> map = new HashMap<String,List<ExrVO>>(); // 부위별 운동
+		Map<String,List<ExrVO>> map = new HashMap<String,List<ExrVO>>(); // 부위별 운동 객체 생성
 		
 		for(Map<String,String> part:partList){
 			List<ExrVO> elist = new ArrayList<ExrVO>();
